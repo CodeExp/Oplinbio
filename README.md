@@ -1,2 +1,15 @@
 # Golum-Linktree
 Modèle de Linktree pour créer facilement sa page de Linktree sur Github
+
+## Personnaliser le modèle
+
+Remplacez les textes et liens d'exemple par les vôtres :
+
+- **`index.html`** : nom (`Prénom Nom`), titre/accroche, texte de présentation, liens des réseaux sociaux et des boutons (`votre-compte`, `votre-chaine`…), et l'adresse de votre page dans le lien de partage (`https://votre-pseudo.github.io/votre-depot/`).
+- **`images/photo-profil.svg`** : remplacez-la par votre photo (pensez à mettre à jour l'attribut `alt`).
+- **`contact.vcf`** : vos coordonnées pour la fiche contact.
+- **`contact.html`** : remplacez `VOTRE_ID_FORMSPREE` par l'identifiant de votre formulaire [Formspree](https://formspree.io/).
+- **`CGU.html`** : remplacez `[Nom de l’éditeur]` et les `____` par vos informations.
+- **`script.js`** : titre et texte utilisés lors du partage de la page.
+
+Les boutons de liens commentés dans `index.html` (YouTube, Podcast, Substack, Clubhouse, Uncut) peuvent être réactivés en retirant les commentaires qui les entourent.
