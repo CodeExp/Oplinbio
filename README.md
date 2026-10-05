@@ -13,3 +13,10 @@ Remplacez les textes et liens d'exemple par les vôtres :
 - **`script.js`** : titre et texte utilisés lors du partage de la page.
 
 Les boutons de liens commentés dans `index.html` (YouTube, Podcast, Substack, Clubhouse, Uncut) peuvent être réactivés en retirant les commentaires qui les entourent.
+
+## Numéro de version
+
+Le numéro de version est affiché dans le pied de page (`Version 0.01`). À chaque mise à jour fusionnée sur `main` :
+
+1. Augmentez le numéro dans le pied de page des quatre pages : `index.html`, `contact.html`, `CGU.html` et `accessibilite.html`.
+2. Ajoutez une entrée dans [`CHANGELOG.md`](CHANGELOG.md) décrivant les changements.
