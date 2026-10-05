@@ -70,45 +70,56 @@ function copyLinkToClipboard(link) {
 
 // Bouton Haut de page
 
-// function topFunction() {
-//     document.body.scrollTop = 0;
-//     document.documentElement.scrollTop = 0;
-// }
-
 function topFunction() {
-    // Définissez la durée de l'animation (en millisecondes)
-    const duration = 200; // Vous pouvez ajuster cette valeur selon vos préférences
+    // Durée de l'animation (en millisecondes)
+    const duration = 200;
 
-    // Récupérez la position actuelle de défilement
-    const startScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    // Position actuelle de défilement
+    const startScroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 
-    // Calculez le déplacement total nécessaire pour atteindre le haut de la page
-    const distanceToTop = startScroll;
+    // Respecte le réglage « réduire les animations » du système
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Obtenez le temps de départ de l'animation
-    const startTime = performance.now();
+    function setScroll(position) {
+        document.documentElement.scrollTop = document.body.scrollTop = position;
+    }
 
-    // Créez une fonction d'animation récursive
-    function animateScroll(timestamp) {
-        const elapsedTime = timestamp - startTime;
-        const scrollStep = distanceToTop / duration;
-
-        // Calculez la nouvelle position de défilement pour cet instant
-        const newScrollPosition = startScroll - Math.min(scrollStep * elapsedTime, distanceToTop);
-
-        // Défilez vers la nouvelle position
-        document.documentElement.scrollTop = document.body.scrollTop = newScrollPosition;
-
-        // Vérifiez si l'animation doit se poursuivre
-        if (elapsedTime < duration) {
-            // Continuez l'animation en appelant requestAnimationFrame
-            requestAnimationFrame(animateScroll);
-        } else {
-            // L'animation est terminée, assurez-vous que la position finale est correcte
-            document.documentElement.scrollTop = document.body.scrollTop = 0;
+    // Une fois en haut, place le focus sur le titre principal pour que
+    // la navigation au clavier ou au lecteur d'écran reprenne en haut de page
+    function focusTop() {
+        const titre = document.querySelector('h1');
+        if (titre) {
+            if (!titre.hasAttribute('tabindex')) {
+                titre.setAttribute('tabindex', '-1');
+            }
+            titre.focus({ preventScroll: true });
         }
     }
 
-    // Démarrez l'animation en appelant requestAnimationFrame pour la première fois
+    if (reduceMotion || startScroll === 0 || !window.requestAnimationFrame) {
+        setScroll(0);
+        focusTop();
+        return;
+    }
+
+    let startTime = null;
+
+    function animateScroll(timestamp) {
+        // Le temps de départ est pris sur la première image pour éviter un écart négatif
+        if (startTime === null) {
+            startTime = timestamp;
+        }
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+
+        setScroll(startScroll * (1 - progress));
+
+        if (progress < 1) {
+            requestAnimationFrame(animateScroll);
+        } else {
+            setScroll(0);
+            focusTop();
+        }
+    }
+
     requestAnimationFrame(animateScroll);
 }

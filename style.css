@@ -269,20 +269,54 @@ h1 {
 
 /* bouton Haut de page */
 
-.boutonHautPage {
+.blocBoutonHautPage {
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: flex-end;
     padding-right: 25px;
-    cursor: pointer;
     padding-bottom: 25px;
 }
 
-.boutonHautPage img {
+/* Couleurs du bouton : fond, flèche et contour (inversées au survol) */
+.boutonHautPage {
+    --fondBoutonHaut: #1E2022;
+    --flecheBoutonHaut: #F0F5F9;
+    display: block;
     width: 70px;
+    height: 70px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    color: #1E2022;
+    cursor: pointer;
 }
 
-.boutonHautPage img:hover {
-    content: url(images/boutonHautPage/boutonHautLightHover.svg);
+.boutonHautPage svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.fondBoutonHaut {
+    fill: var(--fondBoutonHaut);
+    stroke: currentColor;
+    stroke-width: 3;
+}
+
+.flecheBoutonHaut {
+    fill: var(--flecheBoutonHaut);
+}
+
+.boutonHautPage:hover,
+.boutonHautPage:focus-visible {
+    --fondBoutonHaut: #F0F5F9;
+    --flecheBoutonHaut: #1E2022;
+}
+
+/* Contour de focus bien visible pour la navigation au clavier */
+.boutonHautPage:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 4px;
 }
 
 /* Fin bouton haut de page  */
@@ -359,12 +393,16 @@ h1 {
     border: 2px solid #F0F5F9;
 }
 
-.dark-mode .boutonHautPage img {
-    content: url(images/boutonHautPage/boutonHautDark.svg);
+.dark-mode .boutonHautPage {
+    --fondBoutonHaut: #F0F5F9;
+    --flecheBoutonHaut: #1E2022;
+    color: #F0F5F9;
 }
 
-.dark-mode .boutonHautPage img:hover {
-    content: url(images/boutonHautPage/boutonHautDarkHover.svg);
+.dark-mode .boutonHautPage:hover,
+.dark-mode .boutonHautPage:focus-visible {
+    --fondBoutonHaut: #1E2022;
+    --flecheBoutonHaut: #F0F5F9;
 }
 
 .dark-mode .switch input + span:hover {
@@ -515,13 +553,14 @@ h1 {
         font-size: 25px;
     }
 
-    .boutonHautPage {
+    .blocBoutonHautPage {
         padding-right: 10px;
         padding-left: 10px;
     }
 
-    .boutonHautPage img {
+    .boutonHautPage {
         width: 50px;
+        height: 50px;
     }
 
     .boutonLien {
