@@ -236,6 +236,78 @@ h1 {
     font-weight: 700;
 }
 
+/* Catégories de liens en accordéons (<details>/<summary>) */
+
+.categoriesLiens {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 25px;
+    padding-bottom: 50px;
+}
+
+.categorieLiens {
+    width: 85%;
+}
+
+.categorieLiens summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    min-height: 44px;
+    padding: 15px 30px;
+    border: 3px solid #1E2022;
+    border-radius: 70px;
+    font-size: 35px;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+}
+
+/* Masque le triangle par défaut du navigateur */
+.categorieLiens summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Chevron : pointe vers le bas quand fermé, vers le haut quand ouvert */
+.categorieLiens summary::after {
+    content: "";
+    flex: 0 0 auto;
+    width: 14px;
+    height: 14px;
+    margin-bottom: 8px;
+    border-right: 4px solid currentColor;
+    border-bottom: 4px solid currentColor;
+    transform: rotate(45deg);
+}
+
+.categorieLiens[open] summary::after {
+    margin-bottom: -8px;
+    transform: rotate(-135deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .categorieLiens summary::after {
+        transition: transform 0.2s ease;
+    }
+}
+
+.categorieLiens summary:hover {
+    background-color: #1E2022;
+    color: #F0F5F9;
+}
+
+/* Contour de focus bien visible pour la navigation au clavier */
+.categorieLiens summary:focus-visible {
+    outline: 3px solid #1E2022;
+    outline-offset: 4px;
+}
+
+.categorieLiens[open] summary {
+    margin-bottom: 35px;
+}
+
 /* CSS des Boutons vers les différents lien */
 
 .blocBoutonLien {
@@ -391,6 +463,19 @@ h1 {
 
 .dark-mode .boutonLien {
     border: 2px solid #F0F5F9;
+}
+
+.dark-mode .categorieLiens summary {
+    border-color: #F0F5F9;
+}
+
+.dark-mode .categorieLiens summary:hover {
+    background-color: #F0F5F9;
+    color: #1E2022;
+}
+
+.dark-mode .categorieLiens summary:focus-visible {
+    outline-color: #F0F5F9;
 }
 
 .dark-mode .boutonHautPage {
@@ -566,6 +651,19 @@ h1 {
     .boutonLien {
         width: 80%;
         height: 80px;
+    }
+
+    .categorieLiens {
+        width: 92%;
+    }
+
+    .categorieLiens summary {
+        padding: 12px 20px;
+        font-size: 22px;
+    }
+
+    .categorieLiens[open] summary {
+        margin-bottom: 25px;
     }
 
     .listeFooter a {
