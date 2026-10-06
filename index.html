@@ -15,6 +15,15 @@
 </head>
 
 <body>
+    <!-- Liens d'évitement : visibles uniquement quand ils reçoivent le focus -->
+    <nav class="liensEvitement" aria-label="Accès rapide">
+        <ul>
+            <li><a href="#contenu">Aller au contenu</a></li>
+            <li><a href="#liens">Aller aux liens</a></li>
+            <li><a href="#contact">Aller au formulaire de contact</a></li>
+        </ul>
+    </nav>
+
     <!-- HEADER -->
     <header>
         <!-- Boutons en haut à droite -->
@@ -28,19 +37,23 @@
                 </button>
             </a>
             -->
-            <a href='javascript:void(favoris());' rel='shortcut'>
-                <button class="favori" aria-label="Ajouter la page aux favoris" title="Favoriser cette page pour un accès facile ultérieur" tabindex="0">
-                    <!-- Icône pour le bouton Favori -->
-                    <img src="images/logo/boutonRond/favori.svg" alt="Favori">
-                </button>
-            </a>
-
-            <button id="shareButton" class="partager" aria-label="Partager le site" title="copier le lien ou l'envoyer" tabindex="0" onclick="shareOrCopyLink()">
-                <!-- Icône pour le bouton Partager -->
-                <img src="images/logo/boutonRond/partager.svg" alt="Partager">
-                <a href="https://votre-pseudo.github.io/votre-depot/" id="lien"></a>
-                <textarea id="zone-texte" style="position: absolute; left: -9999px;"></textarea>
-            </button>
+            <ul>
+                <li>
+                    <button type="button" class="favori" onclick="favoris()" aria-label="Ajouter la page aux favoris" title="Ajouter la page aux favoris">
+                        <!-- Icône pour le bouton Favori -->
+                        <img src="images/logo/boutonRond/favori.svg" alt="">
+                    </button>
+                </li>
+                <li>
+                    <button type="button" id="shareButton" class="partager" onclick="shareOrCopyLink()" aria-label="Partager le site" title="Copier le lien ou l'envoyer">
+                        <!-- Icône pour le bouton Partager -->
+                        <img src="images/logo/boutonRond/partager.svg" alt="">
+                    </button>
+                </li>
+            </ul>
+            <!-- Adresse de la page à partager et zone technique de copie (non visibles, hors de la navigation clavier) -->
+            <a href="https://votre-pseudo.github.io/votre-depot/" id="lien" hidden></a>
+            <textarea id="zone-texte" tabindex="-1" aria-hidden="true" style="position: absolute; left: -9999px;"></textarea>
 
         </section>
 
@@ -62,7 +75,7 @@
     </header>
 
     <!-- MAIN CONTENT -->
-    <main>
+    <main id="contenu" tabindex="-1">
         <div class="contenu">
             <!-- Présentation écrite -->
             <div class="presentation">
@@ -90,32 +103,36 @@
             </div>
 
             <!-- Boutons réseaux sociaux -->
-            <div class="boutonReseaux">
-                <a href="https://www.instagram.com/votre-compte" target="_blank">
-                    <button class="instagram" aria-label="Voir mon instagram" title="Lien vers ma page instagram" tabindex="0">
-                        <!-- Icône pour le bouton Instagram -->
-                        <img src="images/logo/boutonReseau/instagram.svg" alt="instagram">
-                    </button>
-                </a>
-                <a href="https://twitter.com/votre-compte" target="_blank">
-                    <button class="twitter" aria-label="Voir mon twitter" title="Lien vers ma page Twitter" tabindex="0">
-                        <!-- Icône pour le bouton Twitter -->
-                        <img src="images/logo/boutonReseau/twitter.svg" alt="twitter">
-                    </button>
-                </a>
-                <a href="https://www.linkedin.com/in/votre-compte" target="_blank">
-                    <button class="linkedin" aria-label="Voir mon linkedin" title="Lien vers ma page linkedin" tabindex="0">
-                        <!-- Icône pour le bouton LinkedIn -->
-                        <img src="images/logo/boutonReseau/linkedin.svg" alt="linkedin">
-                    </button>
-                </a>
-                <a href="https://www.facebook.com/votre-compte" target="_blank">
-                    <button class="facebook" aria-label="Voir mon facebook" title="Lien vers ma page facebook" tabindex="0">
-                        <!-- Icône pour le bouton Facebook -->
-                        <img src="images/logo/boutonReseau/facebook.svg" alt="facebook">
-                    </button>
-                </a>
-            </div>
+            <ul class="boutonReseaux">
+                <li>
+                    <a class="instagram" href="https://www.instagram.com/votre-compte" target="_blank" rel="noopener" title="Instagram (nouvel onglet)">
+                        <!-- Icône pour le lien Instagram -->
+                        <img src="images/logo/boutonReseau/instagram.svg" alt="Instagram">
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="twitter" href="https://twitter.com/votre-compte" target="_blank" rel="noopener" title="Twitter (nouvel onglet)">
+                        <!-- Icône pour le lien Twitter -->
+                        <img src="images/logo/boutonReseau/twitter.svg" alt="Twitter">
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="linkedin" href="https://www.linkedin.com/in/votre-compte" target="_blank" rel="noopener" title="LinkedIn (nouvel onglet)">
+                        <!-- Icône pour le lien LinkedIn -->
+                        <img src="images/logo/boutonReseau/linkedin.svg" alt="LinkedIn">
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="facebook" href="https://www.facebook.com/votre-compte" target="_blank" rel="noopener" title="Facebook (nouvel onglet)">
+                        <!-- Icône pour le lien Facebook -->
+                        <img src="images/logo/boutonReseau/facebook.svg" alt="Facebook">
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+            </ul>
         </div>
         <!-- FIN de la présentation -->
 
@@ -126,125 +143,143 @@
 
         <!-- Liens classés par catégorie : chaque catégorie est un accordéon <details> -->
         <!-- Ajoutez « open » sur <details> pour qu'une catégorie soit ouverte au chargement -->
-        <div class="categoriesLiens">
+        <div class="categoriesLiens" id="liens" tabindex="-1">
 
             <!-- Catégorie : Vidéos & podcasts -->
             <details class="categorieLiens" open>
                 <summary>Vidéos &amp; podcasts</summary>
-                <div class="blocBoutonLien">
-
-                    <!-- Bouton vers YouTube -- >
-                    <button class="boutonLien" aria-label="Lien vers ma page YouTube" title="Lien vers Youtube" tabindex="0">
-                        <a href="https://www.youtube.com/@votre-chaine" target="_blank">
+                <ul class="blocBoutonLien">
+                    <!-- Lien vers YouTube (à décommenter pour l'afficher)
+                    <li>
+                        <a class="boutonLien" href="https://www.youtube.com/@votre-chaine" target="_blank" rel="noopener">
                             <div class="youtube">
-                                <!-- Icône pour YouTube -- >
-                                <img src="images/logo/logoLien/youtube.svg" alt="Youtube">
+                                <img src="images/logo/logoLien/youtube.svg" alt="">
                                 <p>YouTube</p>
+                                <span class="sr-only">(nouvel onglet)</span>
                             </div>
                         </a>
-                    </button>
-                    <!---->
-
-                    <!-- Bouton vers Spotify -->
-                    <button class="boutonLien" aria-label="Lien vers ma page Spotify" title="Lien vers Spotify" tabindex="0">
-                        <a href="https://open.spotify.com/show/votre-podcast" target="_blank">
+                    </li>
+                    -->
+                    <!-- Lien vers Spotify -->
+                    <li>
+                        <a class="boutonLien" href="https://open.spotify.com/show/votre-podcast" target="_blank" rel="noopener">
                             <div class="spotify">
-                                <!-- Icône pour Spotify -->
-                                <img src="images/logo/logoLien/spotify.svg" alt="Spotify">
+                                <img src="images/logo/logoLien/spotify.svg" alt="">
                                 <p>Spotify</p>
+                                <span class="sr-only">(nouvel onglet)</span>
                             </div>
                         </a>
-                    </button>
-
-                    <!-- Bouton vers les podcasts -- >
-                    <button class="boutonLien" aria-label="Lien vers mes podcasts" title="Lien vers mes podcasts" tabindex="0">
-                        <a href="https://podcasts.apple.com/podcast/votre-podcast" target="_blank">
+                    </li>
+                    <!-- Lien vers Podcast (à décommenter pour l'afficher)
+                    <li>
+                        <a class="boutonLien" href="https://podcasts.apple.com/podcast/votre-podcast" target="_blank" rel="noopener">
                             <div class="podcast">
-                                <!-- Icône pour les podcasts -- >
-                                <img src="images/logo/logoLien/podcast.svg" alt="podcast">
+                                <img src="images/logo/logoLien/podcast.svg" alt="">
                                 <p>Podcast</p>
+                                <span class="sr-only">(nouvel onglet)</span>
                             </div>
                         </a>
-                    </button>
-                    <!---->
-
-                </div>
+                    </li>
+                    -->
+                </ul>
             </details>
 
             <!-- Catégorie : Projets & écrits -->
             <details class="categorieLiens">
                 <summary>Projets &amp; écrits</summary>
-                <div class="blocBoutonLien">
-
-                    <!-- Bouton vers GitHub -->
-                    <button class="boutonLien" aria-label="Lien vers mon Github" title="Lien vers mon Github" tabindex="0">
-                        <a href="https://github.com/votre-compte" target="_blank">
+                <ul class="blocBoutonLien">
+                    <!-- Lien vers Github -->
+                    <li>
+                        <a class="boutonLien" href="https://github.com/votre-compte" target="_blank" rel="noopener">
                             <div class="github">
-                                <!-- Icône pour GitHub -->
-                                <img src="images/logo/logoLien/github.svg" alt="github">
+                                <img src="images/logo/logoLien/github.svg" alt="">
                                 <p>Github</p>
+                                <span class="sr-only">(nouvel onglet)</span>
                             </div>
                         </a>
-                    </button>
-
-                    <!-- Bouton vers Substack -- >
-                    <button class="boutonLien" aria-label="Lien vers mon substack" title="Lien vers mon substack" tabindex="0">
-                        <a href="https://votre-compte.substack.com/" target="_blank">
+                    </li>
+                    <!-- Lien vers Substack (à décommenter pour l'afficher)
+                    <li>
+                        <a class="boutonLien" href="https://votre-compte.substack.com/" target="_blank" rel="noopener">
                             <div class="substack">
-                                <!-- Icône pour Substack -- >
-                                <img src="images/logo/logoLien/substack.svg" alt="substack">
+                                <img src="images/logo/logoLien/substack.svg" alt="">
                                 <p>Substack</p>
+                                <span class="sr-only">(nouvel onglet)</span>
                             </div>
                         </a>
-                    </button>
-                    <!---->
-
-                </div>
+                    </li>
+                    -->
+                </ul>
             </details>
 
             <!-- Catégorie : Contact & communautés -->
             <details class="categorieLiens">
                 <summary>Contact &amp; communautés</summary>
-                <div class="blocBoutonLien">
-
-                    <!-- Bouton vers un formulaire Google -->
-                    <button class="boutonLien" aria-label="Lien vers le formulaire Google" title="Lien vers le formulaire Google" tabindex="0">
-                        <a href="https://forms.gle/votre-formulaire" target="_blank">
+                <ul class="blocBoutonLien">
+                    <!-- Lien vers Formulaire Google -->
+                    <li>
+                        <a class="boutonLien" href="https://forms.gle/votre-formulaire" target="_blank" rel="noopener">
                             <div class="google-forms">
-                                <!-- Icône pour Google Forms -->
-                                <img src="images/logo/logoLien/googleforms.svg" alt="Google Forms">
+                                <img src="images/logo/logoLien/googleforms.svg" alt="">
                                 <p>Formulaire Google</p>
+                                <span class="sr-only">(nouvel onglet)</span>
                             </div>
                         </a>
-                    </button>
-
-                    <!-- Bouton vers Clubhouse -- >
-                    <button class="boutonLien" aria-label="Lien vers mon clubhouse" title="Lien vers mon clubhouse" tabindex="0">
-                        <a href="https://www.clubhouse.com/@votre-compte" target="_blank">
+                    </li>
+                    <!-- Lien vers Clubhouse (à décommenter pour l'afficher)
+                    <li>
+                        <a class="boutonLien" href="https://www.clubhouse.com/@votre-compte" target="_blank" rel="noopener">
                             <div class="clubhouse">
-                                <!-- Icône pour Clubhouse -- >
-                                <img src="images/logo/logoLien/clubhouse.svg" alt="clubhouse">
+                                <img src="images/logo/logoLien/clubhouse.svg" alt="">
                                 <p>Clubhouse</p>
+                                <span class="sr-only">(nouvel onglet)</span>
                             </div>
                         </a>
-                    </button>
-                    <!---->
-
-                    <!-- Bouton vers Uncut Network -- >
-                    <button class="boutonLien" aria-label="Lien vers mon Uncut" title="Uncut Network" tabindex="0">
-                        <a href="https://uncut.network/user/votre-identifiant" target="_blank">
+                    </li>
+                    -->
+                    <!-- Lien vers Uncut Network (à décommenter pour l'afficher)
+                    <li>
+                        <a class="boutonLien" href="https://uncut.network/user/votre-identifiant" target="_blank" rel="noopener">
                             <div class="uncut">
-                                <img src="images/logo/logoLien/uncut.svg" alt="uncut">
+                                <img src="images/logo/logoLien/uncut.svg" alt="">
                                 <p>Uncut Network</p>
+                                <span class="sr-only">(nouvel onglet)</span>
                             </div>
                         </a>
-                    </button>
-                    <!---->
-
-                </div>
+                    </li>
+                    -->
+                </ul>
             </details>
         </div>
         <!-- Fin des liens classés par catégorie -->
+
+        <!-- Formulaire de contact dans un accordéon -->
+        <div class="categoriesLiens">
+            <details class="categorieLiens" id="contact">
+                <summary>Me contacter</summary>
+                <form class="formulaireContact" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST">
+                    <label for="contactNom">Nom</label>
+                    <input id="contactNom" type="text" name="nom" autocomplete="family-name" required>
+
+                    <label for="contactPrenom">Prénom</label>
+                    <input id="contactPrenom" type="text" name="prenom" autocomplete="given-name" required>
+
+                    <label for="contactEmail">Adresse e-mail</label>
+                    <input id="contactEmail" type="email" name="email" autocomplete="email" required>
+
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" name="message" rows="5" required></textarea>
+
+                    <p class="message">
+                        Après l'envoi, vous serez redirigé vers une page de confirmation du service Formspree,
+                        qui n'est peut-être pas accessible. Elle vous permettra de revenir sur ce site avec un bouton.
+                    </p>
+
+                    <button type="submit">Envoyer le message</button>
+                </form>
+            </details>
+        </div>
+        <!-- Fin du formulaire de contact -->
 
         <!-- Bouton haut de page -->
         <div class="blocBoutonHautPage">
@@ -262,16 +297,16 @@
     <!-- FOOTER -->
     <footer>
         <!-- Liens du footer -->
-        <div class="listeFooter">
-            <a href="CGU.html" aria-label="Conditions générales d'utilisation" title="Conditions générales d'utilisation" tabindex="0">CGU</a>
-            <!--<a href="accessibilite.html" aria-label="En savoir plus sur l'accessibilité" title="En savoir plus sur l'accessibilité" tabindex="0">Accessibilité</a><!---->
-            <a href="contact.html" aria-label="Me contacter" title="Lien vers un formulaire de contact" tabindex="0">Me contacter</a>
-        </div>
+        <ul class="listeFooter">
+            <li><a href="CGU.html" aria-label="Conditions générales d'utilisation" title="Conditions générales d'utilisation" tabindex="0">CGU</a></li>
+            <!--<li><a href="accessibilite.html" aria-label="En savoir plus sur l'accessibilité" title="En savoir plus sur l'accessibilité" tabindex="0">Accessibilité</a></li>-->
+            <li><a href="#contact" title="Ouvrir le formulaire de contact">Me contacter</a></li>
+        </ul>
 
         <!-- Mention légale -->
         <div class="copyright">
             <p aria-label="Mention Légales et Droit d'auteur" title="Mentions légales et droit d'auteur" tabindex="0">
-                Mentions légales | &copy; Copyright 2023 | Version 0.02
+                Mentions légales | &copy; Copyright 2023 | Version 0.03
             </p>
         </div>
     </footer>
