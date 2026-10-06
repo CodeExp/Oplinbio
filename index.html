@@ -10,6 +10,9 @@
     <link rel="shortcut icon" type="image/svg+xml" href="images/photo-profil.svg">
     <!-- Lien CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- AccessConfig : paramètres d'affichage pour les visiteurs (après style.css pour pouvoir le surcharger) -->
+    <link rel="stylesheet" href="accessconfig/css/accessconfig.min.css">
+    <script src="accessconfig/js/accessconfig.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
@@ -24,20 +27,24 @@
         </ul>
     </nav>
 
+    <!-- Bouton AccessConfig : contrastes, police adaptée à la dyslexie, interlignage… -->
+    <div class="barreAccessibilite">
+        <div id="accessconfig" data-accessconfig-buttonname="Paramètres d’accessibilité" data-accessconfig-params='{ "Prefix" : "a42-ac", "ContainerClass" : "","ModalCloseButton" : "","ModalTitle" : "","FormFieldset" : "","FormFieldsetLegend" : "","FormRadio" : ""}'></div>
+    </div>
+
     <!-- HEADER -->
     <header>
         <!-- Boutons en haut à droite -->
         <section class="boutonHaut">
 
-            <!--
-            <a href="contact.vcf">
-                <button class="contact" aria-label="Telecharger la fiche contact" title="Fiche contact pour retrouver mes coordonnées" tabindex="0">
-                    <!-- Icône pour le bouton Contact -- >
-                    <img src="images/logo/boutonRond/contact.svg" alt="Contact">
-                </button>
-            </a>
-            -->
             <ul>
+                <!-- Fiche contact à télécharger (à décommenter pour l'afficher)
+                <li>
+                    <a class="contact" href="contact.vcf" download title="Télécharger ma fiche contact">
+                        <img src="images/logo/boutonRond/contact.svg" alt="Télécharger ma fiche contact">
+                    </a>
+                </li>
+                -->
                 <li>
                     <button type="button" class="favori" onclick="favoris()" aria-label="Ajouter la page aux favoris" title="Ajouter la page aux favoris">
                         <!-- Icône pour le bouton Favori -->
@@ -45,7 +52,7 @@
                     </button>
                 </li>
                 <li>
-                    <button type="button" id="shareButton" class="partager" onclick="shareOrCopyLink()" aria-label="Partager le site" title="Copier le lien ou l'envoyer">
+                    <button type="button" id="shareButton" class="partager" onclick="ouvrirPartage()" aria-label="Partager la page" aria-haspopup="dialog" title="Partager la page">
                         <!-- Icône pour le bouton Partager -->
                         <img src="images/logo/boutonRond/partager.svg" alt="">
                     </button>
@@ -60,17 +67,26 @@
         <!-- Titre/Nom -->
         <div class="nom">
             <!-- Titre principal -->
-            <h1 title="Mon nom" tabindex="0">Prénom Nom</h1>
+            <h1>Prénom Nom</h1>
         </div>
 
         <!-- Bouton switch darkmode/lightmode -->
         <div class="blocSwitch">
-            <!--
-            <label class="switch">
-                <input type="checkbox" id="themeSwitch" title="Passer du mode clair au mode sombre" aria-label="Passer du mode clair au mode sombre" tabindex="0" />
-                <span></span>
-            </label>
-            -->
+            <button type="button" class="interrupteurTheme" id="themeSwitch" role="switch" aria-checked="false" aria-label="Mode sombre" title="Activer ou désactiver le mode sombre">
+                <span class="pisteTheme" aria-hidden="true">
+                    <span class="curseurTheme">
+                        <!-- Picto soleil : mode clair -->
+                        <svg class="iconeSoleil" viewBox="0 0 24 24" focusable="false">
+                            <circle cx="12" cy="12" r="4" />
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                        </svg>
+                        <!-- Picto lune : mode sombre -->
+                        <svg class="iconeLune" viewBox="0 0 24 24" focusable="false">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                        </svg>
+                    </span>
+                </span>
+            </button>
         </div>
     </header>
 
@@ -80,10 +96,10 @@
             <!-- Présentation écrite -->
             <div class="presentation">
                 <!-- Titre de la présentation -->
-                <h2 tabindex="0">Votre titre ou accroche</h2>
+                <h2>Votre titre ou accroche</h2>
 
                 <!-- Texte de présentation -->
-                <div class="texte" tabindex="0">
+                <div class="texte">
                     <p>
                         Présentez-vous en quelques phrases : votre métier, vos domaines
                         de compétence et ce que les visiteurs trouveront dans vos liens.
@@ -94,12 +110,18 @@
                         engagements…), ou supprimez-le.
                     </p>
                 </div>
+
+                <!-- Appel à l'action : ouvre le formulaire de contact. Adaptez le texte ou le lien
+                     (ex. inscription à une newsletter) selon l'action que vous attendez des visiteurs. -->
+                <p class="appelAction">
+                    <a class="boutonAction" href="#contact">Me contacter</a>
+                </p>
             </div>
             <!-- Fin de la présentation écrite -->
 
             <!-- Photo de profil -->
             <div class="photoProfil">
-                <img src="images/photo-profil.svg" alt="Photo de profil de Prénom Nom" title="Photo de Prénom Nom" tabindex="0">
+                <img src="images/photo-profil.svg" alt="Photo de profil de Prénom Nom">
             </div>
 
             <!-- Boutons réseaux sociaux -->
@@ -138,7 +160,7 @@
 
         <div class="textePublication">
             <!-- Titre du bloc -->
-            <h2 tabindex="0">Ne ratez aucune de mes publications</h2>
+            <h2>Ne ratez aucune de mes publications</h2>
         </div>
 
         <!-- Liens classés par catégorie : chaque catégorie est un accordéon <details> -->
@@ -294,19 +316,89 @@
         <!-- Fin bouton haut de page -->
     </main>
 
+    <!-- Fenêtre de partage (ouverte par le bouton Partager) -->
+    <dialog class="fenetrePartage" id="fenetrePartage" aria-labelledby="titrePartage">
+        <div class="contenuFenetre">
+            <div class="enteteFenetre">
+                <h2 id="titrePartage">Partager cette page</h2>
+                <button type="button" class="fermerFenetre" onclick="fermerPartage()" aria-label="Fermer la fenêtre de partage" title="Fermer">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <ul class="listePartage">
+                <li>
+                    <a id="partageFacebook" href="https://www.facebook.com/sharer/sharer.php" target="_blank" rel="noopener">
+                        <img src="images/logo/boutonReseau/facebook.svg" alt="">
+                        <span>Facebook</span>
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="partageTwitter" href="https://twitter.com/intent/tweet" target="_blank" rel="noopener">
+                        <img src="images/logo/boutonReseau/twitter.svg" alt="">
+                        <span>X (Twitter)</span>
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="partageLinkedin" href="https://www.linkedin.com/sharing/share-offsite/" target="_blank" rel="noopener">
+                        <img src="images/logo/boutonReseau/linkedin.svg" alt="">
+                        <span>LinkedIn</span>
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="partageWhatsapp" href="https://wa.me/" target="_blank" rel="noopener">
+                        <svg class="iconePartage" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z" />
+                        </svg>
+                        <span>WhatsApp</span>
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="partageEmail" href="mailto:">
+                        <svg class="iconePartage" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.4V17h16V7.4l-8 5.3zM5.2 7 12 11.5 18.8 7z" />
+                        </svg>
+                        <span>Par e-mail</span>
+                    </a>
+                </li>
+                <li>
+                    <button type="button" id="boutonCopierLien" onclick="copierLienPartage()">
+                        <svg class="iconePartage" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M8 3h11a2 2 0 0 1 2 2v11h-2V5H8zM5 7h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zm0 2v10h10V9z" />
+                        </svg>
+                        <span>Copier le lien</span>
+                    </button>
+                </li>
+                <li id="partageNatifItem" hidden>
+                    <button type="button" id="boutonPartageNatif" onclick="partageNatif()">
+                        <svg class="iconePartage" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.4a3 3 0 0 0 0-1.6l6.7-3.4A3 3 0 1 0 15 7l-6.7 3.4a3 3 0 1 0 0 3.2L15 17a3 3 0 1 0 3-1z" />
+                        </svg>
+                        <span>Autres applications…</span>
+                    </button>
+                </li>
+            </ul>
+            <!-- Message lu par les lecteurs d'écran après la copie du lien -->
+            <p class="messagePartage" id="messagePartage" role="status"></p>
+        </div>
+    </dialog>
+
     <!-- FOOTER -->
     <footer>
         <!-- Liens du footer -->
         <ul class="listeFooter">
-            <li><a href="CGU.html" aria-label="Conditions générales d'utilisation" title="Conditions générales d'utilisation" tabindex="0">CGU</a></li>
-            <!--<li><a href="accessibilite.html" aria-label="En savoir plus sur l'accessibilité" title="En savoir plus sur l'accessibilité" tabindex="0">Accessibilité</a></li>-->
+            <li><a href="CGU.html" title="Conditions générales d'utilisation">CGU</a></li>
+            <!--<li><a href="accessibilite.html">Accessibilité</a></li>-->
             <li><a href="#contact" title="Ouvrir le formulaire de contact">Me contacter</a></li>
         </ul>
 
         <!-- Mention légale -->
         <div class="copyright">
-            <p aria-label="Mention Légales et Droit d'auteur" title="Mentions légales et droit d'auteur" tabindex="0">
-                Mentions légales | &copy; Copyright 2023 | Version 0.03
+            <p>
+                Mentions légales | &copy; Copyright 2023 | Version 0.01
             </p>
         </div>
     </footer>
