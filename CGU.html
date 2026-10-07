@@ -10,26 +10,42 @@
     <link rel="shortcut icon" type="image/svg+xml" href="images/photo-profil.svg">
     <!-- Lien CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- AccessConfig : paramètres d'affichage pour les visiteurs (après style.css pour pouvoir le surcharger) -->
+    <link rel="stylesheet" href="accessconfig/css/accessconfig.min.css">
+    <script src="accessconfig/js/accessconfig.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <body>
+    <!-- Bouton AccessConfig : contrastes, police adaptée à la dyslexie, interlignage… -->
+    <div class="barreAccessibilite">
+        <div id="accessconfig" data-accessconfig-buttonname="Paramètres d’accessibilité" data-accessconfig-params='{ "Prefix" : "a42-ac", "ContainerClass" : "","ModalCloseButton" : "","ModalTitle" : "","FormFieldset" : "","FormFieldsetLegend" : "","FormRadio" : ""}'></div>
+    </div>
     <div class="cgu">
     <header class="headerCGU">
 
-    <a href="index.html">
-        <button class="boutonAccueil" tabindex="0" aria-label="Retour à la page d'accueil" title="Bouton Accueil">
-            <img src="images/boutonAccueil/boutonAccueil.svg" alt="Accueil">
-        </button>
-    </a>
+    <a class="boutonAccueil" href="index.html" title="Retour à la page d'accueil">
+                <img src="images/boutonAccueil/boutonAccueil.svg" alt="Retour à la page d'accueil">
+            </a>
 
     <h1 class="titreCGU"> Conditions Générales D'utilisateurs </h1>
 
     <div class="blocSwitch">
-        <label class="switch">
-            <input type="checkbox" id="themeSwitch" title="Passer du mode clair au mode sombre" aria-label="Passer du mode clair au mode sombre" tabindex="4" />
-            <span></span>
-        </label>
+        <button type="button" class="interrupteurTheme" id="themeSwitch" role="switch" aria-checked="false" aria-label="Mode sombre" title="Activer ou désactiver le mode sombre">
+            <span class="pisteTheme" aria-hidden="true">
+                <span class="curseurTheme">
+                    <!-- Picto soleil : mode clair -->
+                    <svg class="iconeSoleil" viewBox="0 0 24 24" focusable="false">
+                        <circle cx="12" cy="12" r="4" />
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                    </svg>
+                    <!-- Picto lune : mode sombre -->
+                    <svg class="iconeLune" viewBox="0 0 24 24" focusable="false">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </span>
+            </span>
+        </button>
     </div>
 
 </header>
@@ -106,15 +122,15 @@
         <footer>
             <!-- Liens du footer -->
             <ul class="listeFooter">
-                <li><a href="CGU.html" aria-label="Conditions générales d'utilisation" title="Conditions générales d'utilisation" tabindex="23">CGU</a></li>
-                <li><a href="accessibilite.html" aria-label="En savoir plus sur l'accessibilité" title="En savoir plus sur l'accessibilité" tabindex="24">Accessibilité</a></li>
-                <li><a href="contact.html" aria-label="Me contacter" title="Lien vers un formulaire de contact" tabindex="25">Me contacter</a></li>
+                <li><a href="CGU.html" title="Conditions générales d'utilisation">CGU</a></li>
+                <li><a href="accessibilite.html">Accessibilité</a></li>
+                <li><a href="contact.html">Me contacter</a></li>
             </ul>
     
             <!-- Mention légale -->
             <div class="copyright">
-                <p aria-label="Mention Légales et Droit d'auteur" title="Mentions légales et droit d'auteur" tabindex="26">
-                    Mentions légales | &copy; Copyright 2023 | Version 0.03
+                <p>
+                    Mentions légales | &copy; Copyright 2023 | Version 0.01
                 </p>
             </div>
         </footer>

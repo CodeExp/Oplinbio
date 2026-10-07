@@ -1,16 +1,65 @@
-// Pour le Bouton Darkmode Lightmode
+// Mode clair / mode sombre
+// - Sans choix enregistré, le site suit le réglage de l'appareil (prefers-color-scheme).
+// - L'interrupteur permet de choisir ; ce choix est mémorisé dans le navigateur
+//   et appliqué sur toutes les pages du site.
 
 const themeSwitch = document.getElementById('themeSwitch');
 const body = document.body;
+const CLE_THEME = 'oplinbio-theme';
+const preferenceSysteme = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
-// L'interrupteur n'est pas présent sur toutes les pages (il est commenté sur l'accueil)
-if (themeSwitch) {
-    themeSwitch.addEventListener('change', function () {
-        if (themeSwitch.checked) {
-            body.classList.add('dark-mode');
-        } else {
-            body.classList.remove('dark-mode');
+function lireChoixTheme() {
+    try {
+        return localStorage.getItem(CLE_THEME);
+    } catch (erreur) {
+        return null;
+    }
+}
+
+function enregistrerChoixTheme(theme) {
+    try {
+        localStorage.setItem(CLE_THEME, theme);
+    } catch (erreur) {
+        // Stockage indisponible (navigation privée…) : le choix vaut pour cette page seulement
+    }
+}
+
+function appliquerTheme(sombre) {
+    body.classList.toggle('dark-mode', sombre);
+    if (themeSwitch) {
+        themeSwitch.setAttribute('aria-checked', sombre ? 'true' : 'false');
+    }
+}
+
+function themeInitialEstSombre() {
+    const choix = lireChoixTheme();
+    if (choix === 'sombre' || choix === 'clair') {
+        return choix === 'sombre';
+    }
+    return preferenceSysteme ? preferenceSysteme.matches : false;
+}
+
+appliquerTheme(themeInitialEstSombre());
+
+// Suit les changements de réglage de l'appareil tant qu'aucun choix n'a été fait
+if (preferenceSysteme) {
+    const suivreSysteme = function (evenement) {
+        if (!lireChoixTheme()) {
+            appliquerTheme(evenement.matches);
         }
+    };
+    if (preferenceSysteme.addEventListener) {
+        preferenceSysteme.addEventListener('change', suivreSysteme);
+    } else if (preferenceSysteme.addListener) {
+        preferenceSysteme.addListener(suivreSysteme);
+    }
+}
+
+if (themeSwitch) {
+    themeSwitch.addEventListener('click', function () {
+        const sombre = !body.classList.contains('dark-mode');
+        appliquerTheme(sombre);
+        enregistrerChoixTheme(sombre ? 'sombre' : 'clair');
     });
 }
 
@@ -25,49 +74,140 @@ function favoris() {
 }
 
 
-// Javascript pour la fonction de copier coller ou partager le lien du site.
-function shareOrCopyLink() {
-    const lien = document.getElementById('lien').href;
-    const zoneTexte = document.getElementById('zone-texte');
+// Fenêtre de partage : réseaux sociaux, e-mail, copie du lien
+// et partage natif de l'appareil quand il est disponible.
 
-    // Vérifier si l'API Web Share est prise en charge par le navigateur
-    if (navigator.share) {
-        // Partager le lien via l'API Web Share
-        navigator.share({
-                title: 'Linktree Prénom Nom',
-                text: 'Site pour accéder aux différents réseaux de Prénom Nom',
-                url: lien
-            })
-            .then(() => console.log('Lien partagé avec succès !'))
-            .catch((error) => {
-                console.error('Erreur lors du partage :', error);
-                // En cas d'erreur, copier le lien dans le presse-papier
-                copyLinkToClipboard(lien);
-            });
-    } else {
-        // Si l'API Web Share n'est pas prise en charge, copier le lien directement
-        copyLinkToClipboard(lien);
+const TITRE_PARTAGE = 'Linktree Prénom Nom';
+const TEXTE_PARTAGE = 'Retrouvez tous les liens de Prénom Nom';
+
+function adressePartagee() {
+    const lien = document.getElementById('lien');
+    return lien ? lien.href : window.location.href;
+}
+
+function preparerLiensPartage() {
+    const url = encodeURIComponent(adressePartagee());
+    const texte = encodeURIComponent(TEXTE_PARTAGE);
+    const liens = {
+        partageFacebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
+        partageTwitter: 'https://twitter.com/intent/tweet?url=' + url + '&text=' + texte,
+        partageLinkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + url,
+        partageWhatsapp: 'https://wa.me/?text=' + texte + '%20' + url,
+        partageEmail: 'mailto:?subject=' + encodeURIComponent(TITRE_PARTAGE) + '&body=' + texte + '%20' + url
+    };
+    Object.keys(liens).forEach(function (id) {
+        const lien = document.getElementById(id);
+        if (lien) {
+            lien.href = liens[id];
+        }
+    });
+    // Le bouton « Autres applications… » n'apparaît que si l'appareil sait partager
+    const partageNatifItem = document.getElementById('partageNatifItem');
+    if (partageNatifItem) {
+        partageNatifItem.hidden = !navigator.share;
     }
 }
 
-function copyLinkToClipboard(link) {
-    const zoneTexte = document.getElementById('zone-texte');
-
-    // Placer le lien dans la zone de texte
-    zoneTexte.value = link;
-    zoneTexte.select();
-
-    try {
-        // Copier le texte sélectionné
-        const resultat = document.execCommand('copy');
-        if (resultat) {
-            alert("Le lien a été copié avec succès !");
-        } else {
-            alert("La copie du lien a échoué. Veuillez le copier manuellement.");
-        }
-    } catch (err) {
-        alert("Une erreur est survenue lors de la copie du lien : " + err);
+function ouvrirPartage() {
+    const fenetre = document.getElementById('fenetrePartage');
+    if (!fenetre) {
+        return;
     }
+    preparerLiensPartage();
+    document.getElementById('messagePartage').textContent = '';
+    if (typeof fenetre.showModal === 'function') {
+        fenetre.showModal();
+    } else {
+        // Navigateurs sans <dialog> : affichage simple
+        fenetre.setAttribute('open', '');
+    }
+}
+
+function fermerPartage() {
+    const fenetre = document.getElementById('fenetrePartage');
+    if (!fenetre) {
+        return;
+    }
+    if (typeof fenetre.close === 'function') {
+        fenetre.close();
+    } else {
+        fenetre.removeAttribute('open');
+    }
+    // Le focus revient sur le bouton Partager
+    const bouton = document.getElementById('shareButton');
+    if (bouton) {
+        bouton.focus();
+    }
+}
+
+function partageNatif() {
+    if (!navigator.share) {
+        return;
+    }
+    navigator.share({
+        title: TITRE_PARTAGE,
+        text: TEXTE_PARTAGE,
+        url: adressePartagee()
+    }).catch(function () {
+        // Partage annulé par l'utilisateur : rien à faire
+    });
+}
+
+function afficherMessagePartage(message) {
+    const zone = document.getElementById('messagePartage');
+    if (zone) {
+        zone.textContent = message;
+    }
+}
+
+function copierLienPartage() {
+    const adresse = adressePartagee();
+    const succes = function () {
+        afficherMessagePartage('Le lien a été copié dans le presse-papier.');
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(adresse).then(succes, function () {
+            copierAvecZoneTexte(adresse) ? succes() : echecCopie(adresse);
+        });
+    } else if (copierAvecZoneTexte(adresse)) {
+        succes();
+    } else {
+        echecCopie(adresse);
+    }
+}
+
+// Méthode de secours pour les navigateurs sans API presse-papier
+function copierAvecZoneTexte(adresse) {
+    const zoneTexte = document.getElementById('zone-texte');
+    if (!zoneTexte) {
+        return false;
+    }
+    zoneTexte.value = adresse;
+    zoneTexte.select();
+    try {
+        return document.execCommand('copy');
+    } catch (erreur) {
+        return false;
+    }
+}
+
+function echecCopie(adresse) {
+    afficherMessagePartage('La copie a échoué. Adresse à copier : ' + adresse);
+}
+
+// Fermeture avec la touche Échap : on remet aussi le focus sur le bouton Partager
+const fenetrePartage = document.getElementById('fenetrePartage');
+if (fenetrePartage) {
+    fenetrePartage.addEventListener('cancel', function (evenement) {
+        evenement.preventDefault();
+        fermerPartage();
+    });
+    // Clic en dehors du contenu de la fenêtre (sur le fond) : fermeture
+    fenetrePartage.addEventListener('click', function (evenement) {
+        if (evenement.target === fenetrePartage) {
+            fermerPartage();
+        }
+    });
 }
 
 

@@ -1,9 +1,37 @@
+/* ==========================================================
+   Variables de personnalisation
+   Modifiez ces valeurs pour adapter les couleurs et la police
+   du modèle à votre identité visuelle.
+   ========================================================== */
+:root {
+    /* Couleurs principales (texte, boutons, fonds) */
+    --couleur-sombre: #1E2022;
+    --couleur-claire: #F0F5F9;
+
+    /* Fond de l'en-tête et de la présentation (mode clair) */
+    --couleur-fond-entete: #BDD3E0;
+
+    /* Survol des boutons de liens (mode clair) */
+    --couleur-survol-lien: #445D76;
+
+    /* Mode sombre : fond de page et fond de l'en-tête */
+    --couleur-fond-sombre: #24292C;
+    --couleur-entete-sombre: #363C41;
+
+    /* Survol de l'interrupteur clair/sombre */
+    --couleur-survol-interrupteur: #575757;
+    --couleur-survol-interrupteur-sombre: #D0D3D5;
+
+    /* Police du site (pensez à charger la police dans le <head> des pages) */
+    --police: 'Raleway', sans-serif;
+}
+
 /* CSS pour la page */
 * {
     padding: 0;
     margin: 0;
     text-decoration: none;
-    font-family: 'Raleway';
+    font-family: var(--police);
 }
 
 button {
@@ -11,6 +39,18 @@ button {
     background: none;
     border: none;
 
+}
+
+/* Un élément avec l'attribut hidden reste masqué, quelle que soit sa règle display */
+[hidden] {
+    display: none !important;
+}
+
+/* Icônes carrées : garder leur taille pendant le changement d'image au survol
+   (sinon l'icône s'écrase un instant et le clic tombe à côté) */
+.boutonHaut img,
+.boutonReseaux img {
+    aspect-ratio: 1 / 1;
 }
 
 /* Texte lu par les lecteurs d'écran mais masqué à l'écran */
@@ -43,15 +83,15 @@ button {
     z-index: 10;
     padding: 15px 25px;
     border-radius: 20px;
-    background-color: #1E2022;
-    color: #F0F5F9;
+    background-color: var(--couleur-sombre);
+    color: var(--couleur-claire);
     font-size: 20px;
     font-weight: 700;
 }
 
 .liensEvitement a:focus {
     top: 10px;
-    outline: 3px solid #F0F5F9;
+    outline: 3px solid var(--couleur-claire);
     outline-offset: -6px;
 }
 
@@ -66,12 +106,42 @@ button {
 .boutonReseaux a:focus-visible,
 .boutonLien:focus-visible,
 .listeFooter a:focus-visible {
-    outline: 3px solid #1E2022;
+    outline: 3px solid var(--couleur-sombre);
     outline-offset: 4px;
 }
 
 .listeFooter a:focus-visible {
-    outline-color: #F0F5F9;
+    outline-color: var(--couleur-claire);
+}
+
+/* Barre du bouton AccessConfig (en haut de chaque page) */
+.barreAccessibilite {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    background-color: var(--couleur-sombre);
+}
+
+#a42-ac-button {
+    min-height: 44px;
+    padding: 8px 20px;
+    border: 2px solid var(--couleur-claire);
+    border-radius: 30px;
+    background-color: var(--couleur-sombre);
+    color: var(--couleur-claire);
+    font-family: var(--police);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#a42-ac-button:hover {
+    background-color: var(--couleur-claire);
+    color: var(--couleur-sombre);
+}
+
+#a42-ac-button:focus-visible {
+    outline: 3px solid var(--couleur-claire);
+    outline-offset: 3px;
 }
 
 /* CSS pour le header */
@@ -82,7 +152,7 @@ header {
     align-items: center;
     justify-content: space-between;
     width: calc(100% - 40px);
-    background-color: #BDD3E0;
+    background-color: var(--couleur-fond-entete);
 }
 
 /* CSS pour les boutons en haut à droite */
@@ -102,6 +172,12 @@ header {
     margin: 10px;
 }
 
+.boutonHaut a {
+    display: inline-block;
+    margin: 10px;
+}
+
+.boutonHaut a img,
 .boutonHaut button img {
     width: 60px;
     height: auto;
@@ -131,7 +207,7 @@ h1 {
     font-weight: 900;
     font-size: 80px;
     margin: auto 0;
-    color: #1E2022;
+    color: var(--couleur-sombre);
 }
 
 /* CSS pour le bouton switch */
@@ -143,59 +219,96 @@ h1 {
     position: relative;
 }
 
-.switch {
-    display: inline-block;
+/* Interrupteur clair/sombre : piste + curseur portant un picto soleil ou lune */
+.interrupteurTheme {
     position: absolute;
-    width: 70px;
-    height: 40px;
-    cursor: pointer;
-    overflow: hidden;
     right: 25px;
-}
-
-.switch input {
-    position: absolute;
-    top: -30px;
-    left: -30px;
-    width: 0;
-    height: 0;
-}
-
-.switch input + span {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #1E2022;
+    padding: 0;
     border-radius: 20px;
 }
 
-.switch input + span:hover {
-    background: #575757;
+.pisteTheme {
+    position: relative;
+    display: block;
+    width: 70px;
+    height: 40px;
+    border-radius: 20px;
+    background: var(--couleur-sombre);
 }
 
-.switch input:checked + span {
-    background: #F0F5F9;
+.interrupteurTheme:hover .pisteTheme {
+    background: var(--couleur-survol-interrupteur);
 }
 
-.switch input + span:before {
-    content: "";
-    display: inline-block;
+.curseurTheme {
     position: absolute;
     top: 50%;
     left: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 32px;
     height: 32px;
-    background: #F0F5F9;
     border-radius: 50%;
+    background: var(--couleur-claire);
+    color: var(--couleur-sombre);
     transform: translateY(-50%);
-    transition: all .5s;
 }
 
-.switch input:checked + span:before {
+@media (prefers-reduced-motion: no-preference) {
+    .curseurTheme {
+        transition: left .3s, background .3s;
+    }
+}
+
+.curseurTheme svg {
+    width: 20px;
+    height: 20px;
+}
+
+.iconeSoleil {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.iconeLune {
+    display: none;
+    fill: currentColor;
+}
+
+/* Mode sombre activé : curseur à droite, picto lune */
+.interrupteurTheme[aria-checked="true"] .pisteTheme {
+    background: var(--couleur-claire);
+}
+
+.interrupteurTheme[aria-checked="true"]:hover .pisteTheme {
+    background: var(--couleur-survol-interrupteur-sombre);
+}
+
+.interrupteurTheme[aria-checked="true"] .curseurTheme {
     left: 34px;
-    background: #1E2022;
+    background: var(--couleur-sombre);
+    color: var(--couleur-claire);
+}
+
+.interrupteurTheme[aria-checked="true"] .iconeSoleil {
+    display: none;
+}
+
+.interrupteurTheme[aria-checked="true"] .iconeLune {
+    display: block;
+}
+
+/* Contour de focus visible au clavier */
+.interrupteurTheme:focus-visible {
+    outline: 3px solid var(--couleur-sombre);
+    outline-offset: 4px;
+}
+
+.dark-mode .interrupteurTheme:focus-visible {
+    outline-color: var(--couleur-claire);
 }
 
 /* FIN DU CSS HEADER */
@@ -205,7 +318,7 @@ h1 {
 .contenu {
     display: flex;
     justify-content: space-between;
-    background-color: #BDD3E0;
+    background-color: var(--couleur-fond-entete);
     padding: 0 50px 70px 50px;
 }
 
@@ -220,7 +333,7 @@ h1 {
 .presentation h2 {
     font-size: 50px;
     font-weight: 700;
-    color: #1E2022;
+    color: var(--couleur-sombre);
 }
 
 .presentation p {
@@ -228,9 +341,50 @@ h1 {
     font-weight: 400;
     margin-top: 20px;
     line-height: 35px;
-    color: #1E2022;
+    color: var(--couleur-sombre);
 }
 
+
+/* Appel à l'action sous la présentation */
+.appelAction {
+    margin-top: 35px;
+}
+
+.boutonAction {
+    display: inline-block;
+    padding: 18px 40px;
+    border: 3px solid var(--couleur-sombre);
+    border-radius: 70px;
+    background-color: var(--couleur-sombre);
+    color: var(--couleur-claire);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.boutonAction:hover {
+    background-color: var(--couleur-claire);
+    color: var(--couleur-sombre);
+}
+
+.boutonAction:focus-visible {
+    outline: 3px solid var(--couleur-sombre);
+    outline-offset: 4px;
+}
+
+.dark-mode .boutonAction {
+    border-color: var(--couleur-claire);
+    background-color: var(--couleur-claire);
+    color: var(--couleur-sombre);
+}
+
+.dark-mode .boutonAction:hover {
+    background-color: var(--couleur-sombre);
+    color: var(--couleur-claire);
+}
+
+.dark-mode .boutonAction:focus-visible {
+    outline-color: var(--couleur-claire);
+}
 
 /* photo de profil */
 .photoProfil {
@@ -324,7 +478,7 @@ h1 {
     gap: 20px;
     min-height: 44px;
     padding: 15px 30px;
-    border: 3px solid #1E2022;
+    border: 3px solid var(--couleur-sombre);
     border-radius: 70px;
     font-size: 35px;
     font-weight: 700;
@@ -361,13 +515,13 @@ h1 {
 }
 
 .categorieLiens summary:hover {
-    background-color: #1E2022;
-    color: #F0F5F9;
+    background-color: var(--couleur-sombre);
+    color: var(--couleur-claire);
 }
 
 /* Contour de focus bien visible pour la navigation au clavier */
 .categorieLiens summary:focus-visible {
-    outline: 3px solid #1E2022;
+    outline: 3px solid var(--couleur-sombre);
     outline-offset: 4px;
 }
 
@@ -396,7 +550,7 @@ h1 {
     align-items: center;
     width: 85%;
     height: 100px;
-    background-color: #1E2022;
+    background-color: var(--couleur-sombre);
     border-radius: 70px;
 }
 
@@ -406,14 +560,160 @@ h1 {
     align-items: center;
     font-size: 35px;
     gap: 30px;
-    color: #F0F5F9;
+    color: var(--couleur-claire);
 }
 
 .boutonLien:hover {
-    background-color: #445D76;
+    background-color: var(--couleur-survol-lien);
 }
 
 /* fin des boutons pour les liens en CSS */
+
+/* Fenêtre de partage */
+.fenetrePartage {
+    width: min(90vw, 520px);
+    margin: auto;
+    padding: 0;
+    border: 3px solid var(--couleur-sombre);
+    border-radius: 30px;
+    background-color: var(--couleur-claire);
+    color: var(--couleur-sombre);
+}
+
+.fenetrePartage::backdrop {
+    background-color: rgba(30, 32, 34, 0.6);
+}
+
+.contenuFenetre {
+    padding: 25px 30px 30px 30px;
+}
+
+.enteteFenetre {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.enteteFenetre h2 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.fermerFenetre {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--couleur-sombre);
+}
+
+.fermerFenetre:hover {
+    background-color: var(--couleur-sombre);
+    color: var(--couleur-claire);
+}
+
+.listePartage {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
+    list-style: none;
+}
+
+.listePartage a,
+.listePartage button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 56px;
+    padding: 8px 15px;
+    border: 2px solid var(--couleur-sombre);
+    border-radius: 20px;
+    background-color: var(--couleur-claire);
+    color: var(--couleur-sombre);
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.listePartage a:hover,
+.listePartage button:hover {
+    background-color: var(--couleur-sombre);
+    color: var(--couleur-claire);
+}
+
+.listePartage img,
+.iconePartage {
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+}
+
+.iconePartage {
+    fill: currentColor;
+}
+
+.messagePartage {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    word-break: break-all;
+}
+
+.messagePartage:empty {
+    display: none;
+}
+
+.fermerFenetre:focus-visible,
+.listePartage a:focus-visible,
+.listePartage button:focus-visible {
+    outline: 3px solid var(--couleur-sombre);
+    outline-offset: 3px;
+}
+
+/* Fenêtre de partage en mode sombre */
+.dark-mode .fenetrePartage {
+    border-color: var(--couleur-claire);
+    background-color: var(--couleur-fond-sombre);
+    color: var(--couleur-claire);
+}
+
+.dark-mode .enteteFenetre h2,
+.dark-mode .messagePartage {
+    color: var(--couleur-claire);
+}
+
+.dark-mode .fermerFenetre {
+    color: var(--couleur-claire);
+}
+
+.dark-mode .fermerFenetre:hover {
+    background-color: var(--couleur-claire);
+    color: var(--couleur-sombre);
+}
+
+.dark-mode .listePartage a,
+.dark-mode .listePartage button {
+    border-color: var(--couleur-claire);
+    background-color: var(--couleur-sombre);
+    color: var(--couleur-claire);
+}
+
+.dark-mode .listePartage a:hover,
+.dark-mode .listePartage button:hover {
+    background-color: var(--couleur-claire);
+    color: var(--couleur-sombre);
+}
+
+.dark-mode .fermerFenetre:focus-visible,
+.dark-mode .listePartage a:focus-visible,
+.dark-mode .listePartage button:focus-visible {
+    outline-color: var(--couleur-claire);
+}
 
 /* bouton Haut de page */
 
@@ -426,8 +726,8 @@ h1 {
 
 /* Couleurs du bouton : fond, flèche et contour (inversées au survol) */
 .boutonHautPage {
-    --fondBoutonHaut: #1E2022;
-    --flecheBoutonHaut: #F0F5F9;
+    --fondBoutonHaut: var(--couleur-sombre);
+    --flecheBoutonHaut: var(--couleur-claire);
     display: block;
     width: 70px;
     height: 70px;
@@ -435,7 +735,7 @@ h1 {
     border: none;
     border-radius: 50%;
     background: none;
-    color: #1E2022;
+    color: var(--couleur-sombre);
     cursor: pointer;
 }
 
@@ -457,8 +757,8 @@ h1 {
 
 .boutonHautPage:hover,
 .boutonHautPage:focus-visible {
-    --fondBoutonHaut: #F0F5F9;
-    --flecheBoutonHaut: #1E2022;
+    --fondBoutonHaut: var(--couleur-claire);
+    --flecheBoutonHaut: var(--couleur-sombre);
 }
 
 /* Contour de focus bien visible pour la navigation au clavier */
@@ -470,7 +770,7 @@ h1 {
 /* Fin bouton haut de page  */
 
 .listeFooter {
-    background-color: #1E2022;
+    background-color: var(--couleur-sombre);
     font-size: 30px;
     font-weight: 400;
     display: flex;
@@ -485,7 +785,7 @@ h1 {
 
 .listeFooter a {
     position: relative;
-    color: #F0F5F9;
+    color: var(--couleur-claire);
     text-decoration: none;
 }
 
@@ -496,7 +796,7 @@ h1 {
     left: 50%;
     width: 0;
     height: 2px;
-    background-color: #F0F5F9;
+    background-color: var(--couleur-claire);
     transition: width 0.2s ease-in-out;
     transform: translateX(-50%);
 }
@@ -507,8 +807,8 @@ h1 {
 }
 
 .copyright {
-    background-color: #1E2022;
-    color: #F0F5F9;
+    background-color: var(--couleur-sombre);
+    color: var(--couleur-claire);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -519,73 +819,70 @@ h1 {
 
 /* CSS pour le darkmode */
 .dark-mode {
-    background-color: #24292C;
-    color: #F0F5F9;
+    background-color: var(--couleur-fond-sombre);
+    color: var(--couleur-claire);
 }
 
 .dark-mode header {
-    background-color: #363C41;
+    background-color: var(--couleur-entete-sombre);
     /* Change header background color */
 }
 
 .dark-mode .contenu {
-    background-color: #363C41;
+    background-color: var(--couleur-entete-sombre);
     /* Change .contenu background color */
 }
 
 .dark-mode h1,
 .dark-mode h2,
 .dark-mode p {
-    color: #F0F5F9;
+    color: var(--couleur-claire);
     /* Change text color */
 }
 
 .dark-mode .boutonLien {
-    border: 2px solid #F0F5F9;
+    border: 2px solid var(--couleur-claire);
 }
 
 .dark-mode .boutonHaut button:focus-visible,
 .dark-mode .boutonReseaux a:focus-visible,
 .dark-mode .boutonLien:focus-visible {
-    outline-color: #F0F5F9;
+    outline-color: var(--couleur-claire);
 }
 
 .dark-mode .categorieLiens summary {
-    border-color: #F0F5F9;
+    border-color: var(--couleur-claire);
 }
 
 .dark-mode .categorieLiens summary:hover {
-    background-color: #F0F5F9;
-    color: #1E2022;
+    background-color: var(--couleur-claire);
+    color: var(--couleur-sombre);
 }
 
 .dark-mode .categorieLiens summary:focus-visible {
-    outline-color: #F0F5F9;
+    outline-color: var(--couleur-claire);
 }
 
 .dark-mode .boutonHautPage {
-    --fondBoutonHaut: #F0F5F9;
-    --flecheBoutonHaut: #1E2022;
-    color: #F0F5F9;
+    --fondBoutonHaut: var(--couleur-claire);
+    --flecheBoutonHaut: var(--couleur-sombre);
+    color: var(--couleur-claire);
 }
 
 .dark-mode .boutonHautPage:hover,
 .dark-mode .boutonHautPage:focus-visible {
-    --fondBoutonHaut: #1E2022;
-    --flecheBoutonHaut: #F0F5F9;
+    --fondBoutonHaut: var(--couleur-sombre);
+    --flecheBoutonHaut: var(--couleur-claire);
 }
 
-.dark-mode .switch input + span:hover {
-    background: #D0D3D5;
-}
 
 .dark-mode .boutonLien:hover {
-    background-color: #F0F5F9;
+    background-color: var(--couleur-claire);
     border: none;
 }
 
 .dark-mode .boutonLien:hover p {
-    color: #1E2022;
+    color: var(--couleur-sombre);
 }
 
 .dark-mode .boutonLien:hover .google-forms img {
@@ -639,12 +936,25 @@ h1 {
         width: 50%;
     }
 
+    /* Réseaux sociaux remontés sous la photo, avant la présentation */
+    .photoProfil {
+        order: 1;
+    }
+
     .boutonReseaux {
+        order: 2;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: auto;
         margin: 0 auto;
         gap: 30px;
+    }
+
+    .presentation {
+        order: 3;
+        padding-top: 30px;
     }
 
     .presentation {
@@ -704,18 +1014,61 @@ h1 {
 
 @media (max-width: 600px) {
     .boutonReseaux {
-        width: 55px;
+        gap: 20px;
     }
 
     .boutonReseaux a {
         width: 55px;
+        padding-top: 20px;
+    }
+
+    /* En-tête sur deux lignes : boutons et interrupteur, puis le nom */
+    header {
+        flex-wrap: wrap;
+        row-gap: 15px;
+        padding-top: 25px;
+    }
+
+    .boutonHaut {
+        order: 1;
+        width: auto;
+        padding-left: 0;
+    }
+
+    .blocSwitch {
+        order: 2;
+        width: auto;
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    .nom {
+        order: 3;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .boutonHaut ul {
+        flex-wrap: nowrap;
+    }
+
+    .boutonHaut a img,
+    .boutonHaut button img {
+        width: 50px;
+    }
+
+    .photoProfil {
+        width: 60%;
     }
 
     .boutonReseaux a img {
         width: 55px;
     }
 
-    .switch {
+    .interrupteurTheme {
         right: 5px;
     }
 
@@ -768,7 +1121,7 @@ h1 {
 /* CSS pour le formulaire de contact */
 
 .formulaire {
-    background-color: #BDD3E0;
+    background-color: var(--couleur-fond-entete);
 }
 
 
@@ -798,7 +1151,7 @@ h1 {
 
 /*titre de la page formulaire*/
 .titreFormulaire {
-    color: #1E2022;
+    color: var(--couleur-sombre);
     font-size: 50px;
     font-weight: 800;
     margin: 0 auto;
@@ -815,33 +1168,33 @@ form {
 
 /*Zone pour entrer le nom , prenom , email*/
 form input {
-    background-color: #F0F5F9;
+    background-color: var(--couleur-claire);
     width: 70%;
     font-size: 20px;
     padding: 30px 30px;
     border-radius: 20px;
     margin-bottom: 20px;
-    border: solid 2px #1E2022;
-    color: #1E2022;
+    border: solid 2px var(--couleur-sombre);
+    color: var(--couleur-sombre);
     margin: 10px auto;
 }
 
 form input::placeholder {
-    color: #1E2022;
+    color: var(--couleur-sombre);
 }
 
 /*********************************/
 
 /*Zone pour Entrer le message */
 form textarea {
-    background-color: #F0F5F9;
+    background-color: var(--couleur-claire);
     width: 70%;
     font-size: 20px;
     padding: 30px 30px;
     border-radius: 20px;
-    border-color: #1E2022;
-    border: solid 2px #1E2022;
-    color: #1E2022;
+    border-color: var(--couleur-sombre);
+    border: solid 2px var(--couleur-sombre);
+    color: var(--couleur-sombre);
     margin: 10px auto;
 }
 
@@ -856,7 +1209,7 @@ form textarea:focus-within {
 }
 
 form textarea::placeholder {
-    color: #1E2022;
+    color: var(--couleur-sombre);
 }
 
 /*****************************/
@@ -865,7 +1218,7 @@ form textarea::placeholder {
 /*bouton envoyer le message*/
 
 form button {
-    background-color: #F0F5F9;
+    background-color: var(--couleur-claire);
     border-radius: 20px;
     font-size: 20px;
     padding: 20px 18px;
@@ -874,14 +1227,14 @@ form button {
     margin: auto;
     margin-top: 50px;
     font-weight: 700;
-    border: #1E2022 solid 2px;
+    border: var(--couleur-sombre) solid 2px;
 }
 
 form button:hover {
     opacity: 80%;
     cursor: pointer;
-    background-color: #1E2022;
-    color: #F0F5F9;
+    background-color: var(--couleur-sombre);
+    color: var(--couleur-claire);
 }
 
 /*****************************/
@@ -918,7 +1271,7 @@ form button:hover {
     font-weight: 400;
     width: 60%;
     margin: 30px auto;
-    color: #1E2022;
+    color: var(--couleur-sombre);
     padding-bottom: 10px;
     border-radius: 20px;
 }
@@ -926,44 +1279,44 @@ form button:hover {
 /* CSS pour le darkmode du formulaire */
 
 .dark-mode .formulaire {
-    background-color: #363C41;
+    background-color: var(--couleur-entete-sombre);
 }
 
 
 
 .dark-mode .message {
-    color: #F0F5F9;
+    color: var(--couleur-claire);
 }
 
 .dark-mode form input {
-    background-color: #1E2022;
-    border: solid 2px #F0F5F9;
-    color: #F0F5F9;
+    background-color: var(--couleur-sombre);
+    border: solid 2px var(--couleur-claire);
+    color: var(--couleur-claire);
 }
 
 .dark-mode form textarea {
-    background-color: #1E2022;
-    border: solid 2px #F0F5F9;
-    color: #F0F5F9;
+    background-color: var(--couleur-sombre);
+    border: solid 2px var(--couleur-claire);
+    color: var(--couleur-claire);
 }
 
 .dark-mode form input::placeholder {
-    color: #F0F5F9;
+    color: var(--couleur-claire);
 }
 
 .dark-mode form textarea::placeholder {
-    color: #F0F5F9;
+    color: var(--couleur-claire);
 }
 
 .dark-mode form button {
-    background-color: #1E2022;
-    border: #F0F5F9 solid 2px;
-    color: #F0F5F9;
+    background-color: var(--couleur-sombre);
+    border: var(--couleur-claire) solid 2px;
+    color: var(--couleur-claire);
 }
 
 .dark-mode form button:hover {
-    background-color: #F0F5F9;
-    color: #1E2022;
+    background-color: var(--couleur-claire);
+    color: var(--couleur-sombre);
 
 }
 
@@ -1015,10 +1368,10 @@ form button:hover {
 }
 
 .cgu{
-    background-color: #BDD3E0;
+    background-color: var(--couleur-fond-entete);
 }
 .titreCGU{
-    color: #1E2022;
+    color: var(--couleur-sombre);
     margin: 0 auto;
     font-size: 60px;
 }
@@ -1027,22 +1380,22 @@ form button:hover {
     align-items: center;
     text-align: center;
     padding: 10px 0px;
-    color: #1E2022;
+    color: var(--couleur-sombre);
     width: 80%;
     margin: 0 auto;
 }
 
 .mainCGU h3{
-    color: #1E2022;
+    color: var(--couleur-sombre);
 }
 
 /* CSS pour le darkmode */
 
 .dark-mode .cgu{
-    background-color: #363C41;
-    color: #F0F5F9;
+    background-color: var(--couleur-entete-sombre);
+    color: var(--couleur-claire);
 }
 
 .dark-mode .mainCGU h3{
-    color: #F0F5F9;
+    color: var(--couleur-claire);
 }
