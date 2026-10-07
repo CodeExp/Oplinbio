@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+FN;CHARSET=UTF-8:Prénom Nom
+N:Nom;Prénom;;
+TEL;TYPE=CELL:
+EMAIL:votre.adresse@exemple.fr
+ORG:
+URL:https://votre-pseudo.github.io/votre-depot/
+ADR;TYPE=WORK:;;;;;;France
+TITLE:
+END:VCARD
