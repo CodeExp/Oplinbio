@@ -3,13 +3,16 @@
 const themeSwitch = document.getElementById('themeSwitch');
 const body = document.body;
 
-themeSwitch.addEventListener('change', function () {
-    if (themeSwitch.checked) {
-        body.classList.add('dark-mode');
-    } else {
-        body.classList.remove('dark-mode');
-    }
-});
+// L'interrupteur n'est pas présent sur toutes les pages (il est commenté sur l'accueil)
+if (themeSwitch) {
+    themeSwitch.addEventListener('change', function () {
+        if (themeSwitch.checked) {
+            body.classList.add('dark-mode');
+        } else {
+            body.classList.remove('dark-mode');
+        }
+    });
+}
 
 // pour ajouter le site aux favoris
 
@@ -123,3 +126,33 @@ function topFunction() {
 
     requestAnimationFrame(animateScroll);
 }
+
+
+// Ouvre un accordéon <details> ciblé par une ancre (ex. lien d'évitement vers #contact)
+// et place le focus sur son titre pour que la navigation reprenne à cet endroit.
+function ouvrirAccordeonCible(id) {
+    const cible = id && document.getElementById(id);
+    if (!cible) {
+        return;
+    }
+    const accordeon = cible.closest('details');
+    if (accordeon) {
+        accordeon.open = true;
+        const titre = accordeon.querySelector('summary');
+        if (titre) {
+            // Après la navigation vers l'ancre, qui sinon replace le focus sur la page
+            setTimeout(function () {
+                titre.focus();
+            }, 0);
+        }
+    }
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(function (lien) {
+    lien.addEventListener('click', function () {
+        ouvrirAccordeonCible(lien.getAttribute('href').slice(1));
+    });
+});
+
+// Si la page est ouverte directement avec une ancre (ex. index.html#contact)
+ouvrirAccordeonCible(window.location.hash.slice(1));
