@@ -124,102 +124,127 @@
             <h2 tabindex="0">Ne ratez aucune de mes publications</h2>
         </div>
 
-        <!-- Boutons vers les liens -->
-        <div class="blocBoutonLien">
+        <!-- Liens classés par catégorie : chaque catégorie est un accordéon <details> -->
+        <!-- Ajoutez « open » sur <details> pour qu'une catégorie soit ouverte au chargement -->
+        <div class="categoriesLiens">
 
-            <!-- Bouton vers un formulaire Google -->
-            <button class="boutonLien" aria-label="Lien vers le formulaire Google" title="Lien vers le formulaire Google" tabindex="0">
-                <a href="https://forms.gle/votre-formulaire" target="_blank">
-                    <div class="google-forms">
-                        <!-- Icône pour Google Forms -->
-                        <img src="images/logo/logoLien/googleforms.svg" alt="Google Forms">
-                        <p>Formulaire Google</p>
-                    </div>
-                </a>
-            </button>
+            <!-- Catégorie : Vidéos & podcasts -->
+            <details class="categorieLiens" open>
+                <summary>Vidéos &amp; podcasts</summary>
+                <div class="blocBoutonLien">
 
-            <!-- Bouton vers YouTube -- >
-            <button class="boutonLien" aria-label="Lien vers ma page YouTube" title="Lien vers Youtube" tabindex="0">
-                <a href="https://www.youtube.com/@votre-chaine" target="_blank">
-                    <div class="youtube">
-                        <!-- Icône pour YouTube -- >
-                        <img src="images/logo/logoLien/youtube.svg" alt="Youtube">
-                        <p>YouTube</p>
-                    </div>
-                </a>
-            </button>
-            <!---->
+                    <!-- Bouton vers YouTube -- >
+                    <button class="boutonLien" aria-label="Lien vers ma page YouTube" title="Lien vers Youtube" tabindex="0">
+                        <a href="https://www.youtube.com/@votre-chaine" target="_blank">
+                            <div class="youtube">
+                                <!-- Icône pour YouTube -- >
+                                <img src="images/logo/logoLien/youtube.svg" alt="Youtube">
+                                <p>YouTube</p>
+                            </div>
+                        </a>
+                    </button>
+                    <!---->
 
-            <!-- Bouton vers Spotify -->
-            <button class="boutonLien" aria-label="Lien vers ma page Spotify" title="Lien vers Spotify" tabindex="0">
-                <a href="https://open.spotify.com/show/votre-podcast" target="_blank">
-                    <div class="spotify">
-                        <!-- Icône pour Spotify -->
-                        <img src="images/logo/logoLien/spotify.svg" alt="Spotify">
-                        <p>Spotify</p>
-                    </div>
-                </a>
-            </button>
+                    <!-- Bouton vers Spotify -->
+                    <button class="boutonLien" aria-label="Lien vers ma page Spotify" title="Lien vers Spotify" tabindex="0">
+                        <a href="https://open.spotify.com/show/votre-podcast" target="_blank">
+                            <div class="spotify">
+                                <!-- Icône pour Spotify -->
+                                <img src="images/logo/logoLien/spotify.svg" alt="Spotify">
+                                <p>Spotify</p>
+                            </div>
+                        </a>
+                    </button>
 
-            <!-- Bouton vers les podcasts -- >
-            <button class="boutonLien" aria-label="Lien vers mes podcasts" title="Lien vers mes podcasts" tabindex="0">
-                <a href="https://podcasts.apple.com/podcast/votre-podcast" target="_blank">
-                    <div class="podcast">
-                        <!-- Icône pour les podcasts -- >
-                        <img src="images/logo/logoLien/podcast.svg" alt="podcast">
-                        <p>Podcast</p>
-                    </div>
-                </a>
-            </button>
-            <!---->
+                    <!-- Bouton vers les podcasts -- >
+                    <button class="boutonLien" aria-label="Lien vers mes podcasts" title="Lien vers mes podcasts" tabindex="0">
+                        <a href="https://podcasts.apple.com/podcast/votre-podcast" target="_blank">
+                            <div class="podcast">
+                                <!-- Icône pour les podcasts -- >
+                                <img src="images/logo/logoLien/podcast.svg" alt="podcast">
+                                <p>Podcast</p>
+                            </div>
+                        </a>
+                    </button>
+                    <!---->
 
-            <!-- Bouton vers Substack -- >
-            <button class="boutonLien" aria-label="Lien vers mon substack" title="Lien vers mon substack" tabindex="0">
-                <a href="https://votre-compte.substack.com/" target="_blank">
-                    <div class="substack">
-                        <!-- Icône pour Substack -- >
-                        <img src="images/logo/logoLien/substack.svg" alt="substack">
-                        <p>Substack</p>
-                    </div>
-                </a>
-            </button>
-            <!---->
+                </div>
+            </details>
 
-            <!-- Bouton vers Clubhouse -- >
-            <button class="boutonLien" aria-label="Lien vers mon clubhouse" title="Lien vers mon clubhouse" tabindex="0">
-                <a href="https://www.clubhouse.com/@votre-compte" target="_blank">
-                    <div class="clubhouse">
-                        <!-- Icône pour Clubhouse -- >
-                        <img src="images/logo/logoLien/clubhouse.svg" alt="clubhouse">
-                        <p>Clubhouse</p>
-                    </div>
-                </a>
-            </button>
-            <!---->
+            <!-- Catégorie : Projets & écrits -->
+            <details class="categorieLiens">
+                <summary>Projets &amp; écrits</summary>
+                <div class="blocBoutonLien">
 
-            <!-- Bouton vers GitHub -->
-            <button class="boutonLien" aria-label="Lien vers mon Github" title="Lien vers mon Github" tabindex="0">
-                <a href="https://github.com/votre-compte" target="_blank">
-                    <div class="github">
-                        <!-- Icône pour GitHub -->
-                        <img src="images/logo/logoLien/github.svg" alt="github">
-                        <p>Github</p>
-                    </div>
-                </a>
-            </button>
+                    <!-- Bouton vers GitHub -->
+                    <button class="boutonLien" aria-label="Lien vers mon Github" title="Lien vers mon Github" tabindex="0">
+                        <a href="https://github.com/votre-compte" target="_blank">
+                            <div class="github">
+                                <!-- Icône pour GitHub -->
+                                <img src="images/logo/logoLien/github.svg" alt="github">
+                                <p>Github</p>
+                            </div>
+                        </a>
+                    </button>
 
-            <!-- Bouton vers Uncut Network -- >
-            <button class="boutonLien" aria-label="Lien vers mon Uncut" title="Uncut Network" tabindex="0">
-                <a href="https://uncut.network/user/votre-identifiant" target="_blank">
-                    <div class="uncut">
-                        <img src="images/logo/logoLien/uncut.svg" alt="uncut">
-                        <p>Uncut Network</p>
-                    </div>
-                </a>
-            </button>
-            <!---->
+                    <!-- Bouton vers Substack -- >
+                    <button class="boutonLien" aria-label="Lien vers mon substack" title="Lien vers mon substack" tabindex="0">
+                        <a href="https://votre-compte.substack.com/" target="_blank">
+                            <div class="substack">
+                                <!-- Icône pour Substack -- >
+                                <img src="images/logo/logoLien/substack.svg" alt="substack">
+                                <p>Substack</p>
+                            </div>
+                        </a>
+                    </button>
+                    <!---->
+
+                </div>
+            </details>
+
+            <!-- Catégorie : Contact & communautés -->
+            <details class="categorieLiens">
+                <summary>Contact &amp; communautés</summary>
+                <div class="blocBoutonLien">
+
+                    <!-- Bouton vers un formulaire Google -->
+                    <button class="boutonLien" aria-label="Lien vers le formulaire Google" title="Lien vers le formulaire Google" tabindex="0">
+                        <a href="https://forms.gle/votre-formulaire" target="_blank">
+                            <div class="google-forms">
+                                <!-- Icône pour Google Forms -->
+                                <img src="images/logo/logoLien/googleforms.svg" alt="Google Forms">
+                                <p>Formulaire Google</p>
+                            </div>
+                        </a>
+                    </button>
+
+                    <!-- Bouton vers Clubhouse -- >
+                    <button class="boutonLien" aria-label="Lien vers mon clubhouse" title="Lien vers mon clubhouse" tabindex="0">
+                        <a href="https://www.clubhouse.com/@votre-compte" target="_blank">
+                            <div class="clubhouse">
+                                <!-- Icône pour Clubhouse -- >
+                                <img src="images/logo/logoLien/clubhouse.svg" alt="clubhouse">
+                                <p>Clubhouse</p>
+                            </div>
+                        </a>
+                    </button>
+                    <!---->
+
+                    <!-- Bouton vers Uncut Network -- >
+                    <button class="boutonLien" aria-label="Lien vers mon Uncut" title="Uncut Network" tabindex="0">
+                        <a href="https://uncut.network/user/votre-identifiant" target="_blank">
+                            <div class="uncut">
+                                <img src="images/logo/logoLien/uncut.svg" alt="uncut">
+                                <p>Uncut Network</p>
+                            </div>
+                        </a>
+                    </button>
+                    <!---->
+
+                </div>
+            </details>
         </div>
-        <!-- Fin des boutons pour les liens -->
+        <!-- Fin des liens classés par catégorie -->
 
         <!-- Bouton haut de page -->
         <div class="blocBoutonHautPage">
@@ -246,7 +271,7 @@
         <!-- Mention légale -->
         <div class="copyright">
             <p aria-label="Mention Légales et Droit d'auteur" title="Mentions légales et droit d'auteur" tabindex="0">
-                Mentions légales | &copy; Copyright 2023 | Version 0.01
+                Mentions légales | &copy; Copyright 2023 | Version 0.02
             </p>
         </div>
     </footer>

@@ -16,7 +16,15 @@ Les boutons de liens commentés dans `index.html` (YouTube, Podcast, Substack, C
 
 ## Numéro de version
 
-Le numéro de version est affiché dans le pied de page (`Version 0.01`). À chaque mise à jour fusionnée sur `main` :
+Le numéro de version est affiché dans le pied de page (`Version 0.02`). À chaque mise à jour fusionnée sur `main` :
 
 1. Augmentez le numéro dans le pied de page des quatre pages : `index.html`, `contact.html`, `CGU.html` et `accessibilite.html`.
 2. Ajoutez une entrée dans [`CHANGELOG.md`](CHANGELOG.md) décrivant les changements.
+
+## Catégories de liens
+
+Sur `index.html`, les liens sont regroupés par catégorie dans des accordéons (`<details class="categorieLiens">`). Pour personnaliser :
+
+- changez le titre d'une catégorie dans son `<summary>` ;
+- déplacez les boutons de liens d'une catégorie à l'autre, ou copiez un bloc `<details>` pour créer une nouvelle catégorie ;
+- ajoutez l'attribut `open` sur un `<details>` pour qu'une catégorie soit ouverte au chargement de la page.

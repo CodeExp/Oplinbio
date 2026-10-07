@@ -3,6 +3,10 @@
 Le numéro de version d'Oplinbio est affiché dans le pied de page de chaque page.
 Il augmente à chaque mise à jour fusionnée sur la branche `main`.
 
+## 0.02
+
+- Liens de la page d'accueil classés par catégorie dans des accordéons (`<details>`/`<summary>`) : « Vidéos & podcasts » (ouverte par défaut), « Projets & écrits » et « Contact & communautés ». Sans JavaScript, utilisables au clavier et annoncés par les lecteurs d'écran, avec contour de focus visible et prise en charge du mode sombre.
+
 ## 0.01
 
 Première version du modèle Oplinbio.
