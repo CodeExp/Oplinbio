@@ -33,6 +33,8 @@ Première version du modèle Oplinbio.
 - Icônes de chaque réseau social disponibles dans les deux dossiers (`boutonReseau` et `logoLien`) ; la fenêtre de partage utilise les mêmes images que les boutons de réseaux sociaux.
 - Boutons de réseaux sociaux : Bluesky affiché à la place de X (Twitter) ; X, Mastodon, Threads, Reddit et WhatsApp prêts à l'emploi en commentaire.
 - Titulaire des droits : Code Expérience.
+- Bouton « Ajouter aux favoris » supprimé (il n'affichait qu'une alerte) : la fenêtre de partage a une rubrique « Garder cette page » qui explique comment ajouter la page aux favoris selon l'appareil, et un bouton « Installer sur l'appareil » quand le navigateur le propose.
+- Fichier `site.webmanifest` complété et relié aux quatre pages, avec de vraies icônes (`images/icones/`) ; fichier `browserconfig.xml` (tuiles d'Internet Explorer et de l'ancien Edge) supprimé.
 
 ### Accessibilité
 - AccessConfig (Access42) sur les quatre pages : contrastes, police adaptée à la dyslexie, interlignage, justification, remplacement des images.

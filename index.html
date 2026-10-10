@@ -8,6 +8,10 @@
     <meta name="description" content="Page de liens de Prénom Nom, réalisée avec Oplinbio">
     <title>Linktree Prénom Nom</title>
     <link rel="shortcut icon" type="image/svg+xml" href="images/photo-profil.svg">
+    <!-- Installation sur l'appareil (application web) : manifeste, icône iOS et couleur de la barre du navigateur -->
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="images/icones/apple-touch-icon.png">
+    <meta name="theme-color" content="#BDD3E0">
     <!-- Lien CSS -->
     <link rel="stylesheet" href="style.css">
     <!-- AccessConfig : paramètres d'affichage pour les visiteurs (après style.css pour pouvoir le surcharger) -->
@@ -48,12 +52,6 @@
                     </a>
                 </li>
                 -->
-                <li>
-                    <button type="button" class="favori" onclick="favoris()" aria-label="Ajouter la page aux favoris" title="Ajouter la page aux favoris">
-                        <!-- Icône pour le bouton Favori -->
-                        <img src="images/logo/boutonRond/favori.svg" alt="">
-                    </button>
-                </li>
                 <li>
                     <button type="button" id="shareButton" class="partager" onclick="ouvrirPartage()" aria-label="Partager la page" aria-haspopup="dialog" title="Partager la page">
                         <!-- Icône pour le bouton Partager -->
@@ -510,6 +508,20 @@
             </ul>
             <!-- Message lu par les lecteurs d'écran après la copie du lien -->
             <p class="messagePartage" id="messagePartage" role="status"></p>
+            <!-- Garder cette page : aide pour l'ajouter aux favoris (texte adapté à l'appareil par script.js)
+                 et bouton d'installation, affiché seulement si le navigateur le propose -->
+            <section class="garderPage" aria-labelledby="titreGarder">
+                <h3 id="titreGarder">Garder cette page</h3>
+                <p id="aideFavoris">Pour la retrouver facilement, ajoutez-la à vos favoris&nbsp;: appuyez sur <kbd>Ctrl</kbd> + <kbd>D</kbd> (<kbd>⌘</kbd> + <kbd>D</kbd> sur Mac) ou utilisez le menu de votre navigateur.</p>
+                <p id="installerItem" hidden>
+                    <button type="button" id="boutonInstaller" onclick="installerApplication()">
+                        <svg class="iconePartage" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M11 3h2v9.6l3.3-3.3 1.4 1.4L12 16.4l-5.7-5.7 1.4-1.4 3.3 3.3zM4 18h16v2H4z" />
+                        </svg>
+                        <span>Installer sur l'appareil</span>
+                    </button>
+                </p>
+            </section>
         </div>
     </dialog>
 
