@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Page Linktree de Prénom Nom - Page Accessibilité">
+    <meta name="description" content="Page Linktree de Prénom Nom - Accessibilité">
     <title>Linktree Prénom Nom - Accessibilité</title>
     <link rel="shortcut icon" type="image/svg+xml" href="images/photo-profil.svg">
-    <!-- Lien CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <!-- AccessConfig : paramètres d'affichage pour les visiteurs (après style.css pour pouvoir le surcharger) -->
     <link rel="stylesheet" href="accessconfig/css/accessconfig.min.css">
     <script src="accessconfig/js/accessconfig.min.js"></script>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+</head>
 
 <body>
-    <!-- Bouton AccessConfig : contrastes, police adaptée à la dyslexie, interlignage… -->
+    <!-- Barre AccessConfig (optionnelle) : pour afficher le bouton « Paramètres d'accessibilité »
+         dans une barre en haut de page plutôt qu'à côté de l'interrupteur, décommentez ce bloc
+         et supprimez le <div id="accessconfig"> placé dans le bloc « blocSwitch » (un seul par page).
     <div class="barreAccessibilite">
         <div id="accessconfig" data-accessconfig-buttonname="Paramètres d’accessibilité" data-accessconfig-params='{ "Prefix" : "a42-ac", "ContainerClass" : "","ModalCloseButton" : "","ModalTitle" : "","FormFieldset" : "","FormFieldsetLegend" : "","FormRadio" : ""}'></div>
     </div>
-    <div class="cgu">
-        <header class="headerCGU">
+    -->
 
+    <div class="pageSecondaire">
+        <header class="headerCGU">
             <a class="boutonAccueil" href="index.html" title="Retour à la page d'accueil">
                 <img src="images/boutonAccueil/boutonAccueil.svg" alt="Retour à la page d'accueil">
             </a>
 
-            <h1 class="titreCGU"> Accessibilité </h1>
+            <h1 class="titreCGU">Accessibilité</h1>
 
+            <!-- Options d'affichage : paramètres d'accessibilité (AccessConfig) et mode clair/sombre -->
             <div class="blocSwitch">
+                <div id="accessconfig" data-accessconfig-buttonname="Paramètres d’accessibilité" data-accessconfig-params='{ "Prefix" : "a42-ac", "ContainerClass" : "","ModalCloseButton" : "","ModalTitle" : "","FormFieldset" : "","FormFieldsetLegend" : "","FormRadio" : ""}'></div>
                 <button type="button" class="interrupteurTheme" id="themeSwitch" role="switch" aria-checked="false" aria-label="Mode sombre" title="Activer ou désactiver le mode sombre">
                     <span class="pisteTheme" aria-hidden="true">
                         <span class="curseurTheme">
@@ -49,29 +50,75 @@
                     </span>
                 </button>
             </div>
-
         </header>
-        <main class="mainCGU">
-            
-        </main>
-        <!-- FOOTER -->
-        <footer>
-            <!-- Liens du footer -->
-            <ul class="listeFooter">
-                <li><a href="CGU.html" title="Conditions générales d'utilisation">CGU</a></li>
-                <li><a href="accessibilite.html">Accessibilité</a></li>
-                <li><a href="contact.html">Me contacter</a></li>
-            </ul>
 
-            <!-- Mention légale -->
-            <div class="copyright">
-                <p>
-                    Mentions légales | &copy; Copyright 2023 | Version 0.01
-                </p>
-            </div>
-        </footer>
-        <script src="script.js"></script>
+        <main class="mainCGU">
+            <!-- Page Accessibilité : la charte présente le projet Oplinbio, la déclaration est un modèle à compléter. -->
+            <section aria-labelledby="titreCharte">
+                <h2 id="titreCharte">La charte Oplinbio</h2>
+                <p>Ce site est réalisé avec Oplinbio, un modèle libre pour créer sa page de liens (« linktree ») <strong>open source, souveraine et accessible</strong>.</p>
+                <ul class="listeTexte">
+                    <li><strong>Open source</strong> : le code d’Oplinbio est publié sous la licence publique de l’Union européenne (EUPL 1.2). Chacun peut l’utiliser, l’étudier, le modifier et le partager.</li>
+                    <li><strong>Souveraine</strong> : la page est hébergée là où vous le décidez (GitHub Pages, votre propre serveur…). Elle n’intègre aucun outil de pistage ni de publicité, et vos contenus restent les vôtres.</li>
+                    <li><strong>Accessible</strong> : le modèle est conçu pour respecter le RGAA et les WCAG, afin que chacun puisse consulter vos liens, quel que soit son handicap ou son équipement.</li>
+                </ul>
+
+                <h3>Fonctionnalités d’accessibilité du modèle</h3>
+                <ul class="listeTexte">
+                    <li>Liens d’évitement en haut de la page d’accueil pour aller directement au contenu, aux liens ou au formulaire de contact.</li>
+                    <li>Navigation complète au clavier, avec un contour de focus bien visible.</li>
+                    <li>Bouton « Paramètres d’accessibilité » (AccessConfig) : contrastes renforcés ou inversés, police adaptée à la dyslexie, interlignage, justification et remplacement des images par leur texte.</li>
+                    <li>Mode clair ou sombre, qui suit par défaut le réglage de votre appareil.</li>
+                    <li>Liens ouvrant un nouvel onglet signalés aux lecteurs d’écran, animations réduites si vous l’avez demandé à votre appareil.</li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="titreDeclaration">
+                <h2 id="titreDeclaration">Déclaration d’accessibilité</h2>
+                <!-- Modèle à compléter : remplacez les éléments entre crochets [ ] après avoir fait auditer votre page. -->
+                <p>[Nom de l’éditeur] s’engage à rendre son site internet accessible conformément à l’article 47 de la loi n° 2005-102 du 11 février 2005.</p>
+                <p>Cette déclaration d’accessibilité s’applique au site [adresse du site].</p>
+
+                <h3>État de conformité</h3>
+                <p>Le site [adresse du site] n’a pas encore fait l’objet d’un audit de conformité au RGAA 4.1.2. <!-- Après audit, indiquez : « est totalement / partiellement / non conforme avec le RGAA 4.1.2 ». --></p>
+
+                <h3>Résultats des tests</h3>
+                <p>[À compléter après audit : taux de critères RGAA respectés, organisme ou personne ayant réalisé l’audit.]</p>
+
+                <h3>Contenus non accessibles</h3>
+                <p>[À compléter après audit : liste des non-conformités, dérogations pour charge disproportionnée et contenus non soumis à l’obligation d’accessibilité.]</p>
+
+                <h3>Établissement de cette déclaration</h3>
+                <p>Cette déclaration a été établie le [date].</p>
+                <p>Technologies utilisées pour la réalisation du site : HTML, CSS et JavaScript.</p>
+
+                <h3>Retour d’information et contact</h3>
+                <p>Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez nous contacter pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre forme, en utilisant le <a href="index.html#contact">formulaire de contact de la page d’accueil</a>.</p>
+
+                <h3>Voies de recours</h3>
+                <p>Si vous constatez un défaut d’accessibilité vous empêchant d’accéder à un contenu ou à une fonctionnalité du site, que vous nous le signalez et que vous ne parvenez pas à obtenir une réponse de notre part, vous êtes en droit de faire parvenir vos doléances ou une demande de saisine au Défenseur des droits :</p>
+                <ul class="listeTexte">
+                    <li>en écrivant un message au Défenseur des droits via son formulaire en ligne (defenseurdesdroits.fr) ;</li>
+                    <li>en contactant le délégué du Défenseur des droits dans votre région ;</li>
+                    <li>en envoyant un courrier par la poste (gratuit, ne pas mettre de timbre) : Défenseur des droits, Libre réponse 71120, 75342 Paris CEDEX 07.</li>
+                </ul>
+            </section>
+        </main>
     </div>
+
+    <!-- FOOTER : identique sur toutes les pages -->
+    <footer>
+        <nav aria-label="Informations légales">
+            <ul class="listeFooter">
+                <li><a href="CGU.html" aria-label="C.G.U. : conditions générales d’utilisation">C.G.U.</a></li>
+                <li><a href="accessibilite.html" aria-current="page">Accessibilité</a></li>
+                <li><a href="mentions-legales.html">Mentions légales</a></li>
+            </ul>
+        </nav>
+        <p class="copyright">&copy; Copyright 2026 | Version 0.01</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

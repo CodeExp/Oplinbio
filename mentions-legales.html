@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page Linktree de Prénom Nom - Mentions légales">
+    <title>Linktree Prénom Nom - Mentions légales</title>
+    <link rel="shortcut icon" type="image/svg+xml" href="images/photo-profil.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- AccessConfig : paramètres d'affichage pour les visiteurs (après style.css pour pouvoir le surcharger) -->
+    <link rel="stylesheet" href="accessconfig/css/accessconfig.min.css">
+    <script src="accessconfig/js/accessconfig.min.js"></script>
+</head>
+
+<body>
+    <!-- Barre AccessConfig (optionnelle) : pour afficher le bouton « Paramètres d'accessibilité »
+         dans une barre en haut de page plutôt qu'à côté de l'interrupteur, décommentez ce bloc
+         et supprimez le <div id="accessconfig"> placé dans le bloc « blocSwitch » (un seul par page).
+    <div class="barreAccessibilite">
+        <div id="accessconfig" data-accessconfig-buttonname="Paramètres d’accessibilité" data-accessconfig-params='{ "Prefix" : "a42-ac", "ContainerClass" : "","ModalCloseButton" : "","ModalTitle" : "","FormFieldset" : "","FormFieldsetLegend" : "","FormRadio" : ""}'></div>
+    </div>
+    -->
+
+    <div class="pageSecondaire">
+        <header class="headerCGU">
+            <a class="boutonAccueil" href="index.html" title="Retour à la page d'accueil">
+                <img src="images/boutonAccueil/boutonAccueil.svg" alt="Retour à la page d'accueil">
+            </a>
+
+            <h1 class="titreCGU">Mentions légales</h1>
+
+            <!-- Options d'affichage : paramètres d'accessibilité (AccessConfig) et mode clair/sombre -->
+            <div class="blocSwitch">
+                <div id="accessconfig" data-accessconfig-buttonname="Paramètres d’accessibilité" data-accessconfig-params='{ "Prefix" : "a42-ac", "ContainerClass" : "","ModalCloseButton" : "","ModalTitle" : "","FormFieldset" : "","FormFieldsetLegend" : "","FormRadio" : ""}'></div>
+                <button type="button" class="interrupteurTheme" id="themeSwitch" role="switch" aria-checked="false" aria-label="Mode sombre" title="Activer ou désactiver le mode sombre">
+                    <span class="pisteTheme" aria-hidden="true">
+                        <span class="curseurTheme">
+                            <!-- Picto soleil : mode clair -->
+                            <svg class="iconeSoleil" viewBox="0 0 24 24" focusable="false">
+                                <circle cx="12" cy="12" r="4" />
+                                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                            </svg>
+                            <!-- Picto lune : mode sombre -->
+                            <svg class="iconeLune" viewBox="0 0 24 24" focusable="false">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                            </svg>
+                        </span>
+                    </span>
+                </button>
+            </div>
+        </header>
+
+        <main class="mainCGU">
+            <!-- Modèle de mentions légales à compléter : remplacez les éléments entre crochets [ ]. -->
+            <section aria-labelledby="titreEditeur">
+                <h2 id="titreEditeur">Éditeur du site</h2>
+                <p>Le site [adresse du site] est édité par [Prénom Nom ou nom de la structure], [statut : particulier, entreprise individuelle, association, société…].</p>
+                <p>Adresse : [adresse postale, si vous êtes un professionnel]<br>
+                   Adresse électronique : [adresse e-mail de contact]<br>
+                   [Pour un professionnel : numéro SIREN/SIRET, numéro de TVA intracommunautaire]</p>
+                <p>Directeur ou directrice de la publication : [Prénom Nom].</p>
+            </section>
+
+            <section aria-labelledby="titreHebergeur">
+                <h2 id="titreHebergeur">Hébergement</h2>
+                <p>Le site est hébergé par GitHub Pages, service de GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+                <!-- Si vous hébergez le site ailleurs, remplacez ce paragraphe par le nom, l'adresse et le téléphone de votre hébergeur. -->
+            </section>
+
+            <section aria-labelledby="titrePropriete">
+                <h2 id="titrePropriete">Propriété intellectuelle</h2>
+                <p>Les textes, photos et autres contenus de ce site appartiennent à [Prénom Nom], sauf mention contraire.</p>
+                <p>Le site est réalisé avec Oplinbio, dont le code est distribué sous la licence publique de l’Union européenne (EUPL 1.2). Le module AccessConfig d’Access42 est distribué sous licence MIT.</p>
+            </section>
+
+            <section aria-labelledby="titreDonnees">
+                <h2 id="titreDonnees">Données personnelles et cookies</h2>
+                <ul class="listeTexte">
+                    <li><strong>Formulaire de contact</strong> : les informations saisies (nom, prénom, adresse e-mail, message) sont transmises au service Formspree, qui les fait suivre à [Prénom Nom]. Elles servent uniquement à répondre à votre message. [Indiquez la durée de conservation.]</li>
+                    <li><strong>Préférences d’affichage</strong> : votre choix de mode clair ou sombre est enregistré dans votre navigateur, et vos paramètres d’accessibilité (AccessConfig) dans des cookies conservés 180 jours. Ces informations restent sur votre appareil et servent uniquement à l’affichage du site.</li>
+                    <li><strong>Polices d’écriture</strong> : la police Raleway est chargée depuis les serveurs de Google Fonts, qui reçoivent à cette occasion l’adresse IP de votre appareil.</li>
+                    <li>Le site n’utilise aucun outil de mesure d’audience ni de publicité.</li>
+                </ul>
+                <p>Vous pouvez exercer vos droits d’accès, de rectification et de suppression de vos données en utilisant le <a href="index.html#contact">formulaire de contact de la page d’accueil</a>.</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- FOOTER : identique sur toutes les pages -->
+    <footer>
+        <nav aria-label="Informations légales">
+            <ul class="listeFooter">
+                <li><a href="CGU.html" aria-label="C.G.U. : conditions générales d’utilisation">C.G.U.</a></li>
+                <li><a href="accessibilite.html">Accessibilité</a></li>
+                <li><a href="mentions-legales.html" aria-current="page">Mentions légales</a></li>
+            </ul>
+        </nav>
+        <p class="copyright">&copy; Copyright 2026 | Version 0.01</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,18 +1,38 @@
 /* ==========================================================
    Variables de personnalisation
-   Modifiez ces valeurs pour adapter les couleurs et la police
+   Modifiez ces valeurs pour adapter les couleurs et les polices
    du modèle à votre identité visuelle.
    ========================================================== */
 :root {
-    /* Couleurs principales (texte, boutons, fonds) */
-    --couleur-sombre: #1E2022;
+    /* Couleur principale : boutons de liens, en-têtes d'accordéons,
+       pied de page, contours de focus */
+    --couleur-principale: #1E2022;
+
+    /* Couleur secondaire : fond de l'en-tête et de la présentation */
+    --couleur-secondaire: #BDD3E0;
+
+    /* Couleur tertiaire (facultative) : survol des boutons de liens */
+    --couleur-tertiaire: #445D76;
+
+    /* Couleur de la police d'écriture (textes et titres en mode clair) */
+    --couleur-police: #1E2022;
+
+    /* Police des titres (nom, titres de sections, en-têtes d'accordéons) */
+    --police-titres: 'Raleway', sans-serif;
+
+    /* Police du texte et des liens de la zone principale (contenu de la page) */
+    --police-texte-principale: 'Raleway', sans-serif;
+
+    /* Police du texte et des liens de la zone secondaire
+       (en-tête, pied de page, fenêtres et boutons d'options) */
+    --police-texte-secondaire: 'Raleway', sans-serif;
+
+    /* Pensez à charger les polices choisies dans le <head> des pages (lien Google Fonts). */
+
+    /* ---------- Variables complémentaires ---------- */
+
+    /* Couleur claire : texte sur la couleur principale, fonds des boutons ronds et des champs */
     --couleur-claire: #F0F5F9;
-
-    /* Fond de l'en-tête et de la présentation (mode clair) */
-    --couleur-fond-entete: #BDD3E0;
-
-    /* Survol des boutons de liens (mode clair) */
-    --couleur-survol-lien: #445D76;
 
     /* Mode sombre : fond de page et fond de l'en-tête */
     --couleur-fond-sombre: #24292C;
@@ -21,9 +41,6 @@
     /* Survol de l'interrupteur clair/sombre */
     --couleur-survol-interrupteur: #575757;
     --couleur-survol-interrupteur-sombre: #D0D3D5;
-
-    /* Police du site (pensez à charger la police dans le <head> des pages) */
-    --police: 'Raleway', sans-serif;
 }
 
 /* CSS pour la page */
@@ -31,7 +48,38 @@
     padding: 0;
     margin: 0;
     text-decoration: none;
-    font-family: var(--police);
+}
+
+/* Polices : zone principale par défaut, titres, puis zone secondaire */
+body {
+    font-family: var(--police-texte-principale);
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+summary {
+    font-family: var(--police-titres);
+}
+
+header,
+footer,
+.barreAccessibilite,
+.fenetrePartage,
+.boutonHaut {
+    font-family: var(--police-texte-secondaire);
+}
+
+header h1,
+.fenetrePartage h2 {
+    font-family: var(--police-titres);
 }
 
 button {
@@ -83,7 +131,7 @@ button {
     z-index: 10;
     padding: 15px 25px;
     border-radius: 20px;
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     color: var(--couleur-claire);
     font-size: 20px;
     font-weight: 700;
@@ -106,7 +154,7 @@ button {
 .boutonReseaux a:focus-visible,
 .boutonLien:focus-visible,
 .listeFooter a:focus-visible {
-    outline: 3px solid var(--couleur-sombre);
+    outline: 3px solid var(--couleur-principale);
     outline-offset: 4px;
 }
 
@@ -114,34 +162,91 @@ button {
     outline-color: var(--couleur-claire);
 }
 
-/* Barre du bouton AccessConfig (en haut de chaque page) */
+/* Bouton AccessConfig : bouton rond avec un pictogramme d'accessibilité, placé à côté
+   de l'interrupteur clair/sombre. Son texte « Paramètres d'accessibilité » reste lu par
+   les lecteurs d'écran et apparaît en infobulle. */
+#a42-ac-button {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 2px solid var(--couleur-principale);
+    border-radius: 50%;
+    background-color: var(--couleur-claire);
+    font-size: 0;
+}
+
+#a42-ac-button::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    background-color: var(--couleur-principale);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='12' cy='4.5' r='2.2' fill='black' stroke='none'/%3E%3Cpath d='M4.5 9h15M12 9v5.5M12 14.5l-3.5 6.5M12 14.5l3.5 6.5'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='12' cy='4.5' r='2.2' fill='black' stroke='none'/%3E%3Cpath d='M4.5 9h15M12 9v5.5M12 14.5l-3.5 6.5M12 14.5l3.5 6.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+#a42-ac-button:hover {
+    background-color: var(--couleur-principale);
+}
+
+#a42-ac-button:hover::before {
+    background-color: var(--couleur-claire);
+}
+
+#a42-ac-button:focus-visible {
+    outline: 3px solid var(--couleur-principale);
+    outline-offset: 3px;
+}
+
+.dark-mode #a42-ac-button {
+    border-color: var(--couleur-claire);
+    background-color: var(--couleur-principale);
+}
+
+.dark-mode #a42-ac-button::before {
+    background-color: var(--couleur-claire);
+}
+
+.dark-mode #a42-ac-button:hover {
+    background-color: var(--couleur-claire);
+}
+
+.dark-mode #a42-ac-button:hover::before {
+    background-color: var(--couleur-principale);
+}
+
+.dark-mode #a42-ac-button:focus-visible {
+    outline-color: var(--couleur-claire);
+}
+
+/* Barre AccessConfig optionnelle (commentée par défaut dans les pages) :
+   le bouton y retrouve son texte visible */
 .barreAccessibilite {
     display: flex;
     justify-content: flex-end;
     padding: 10px 20px;
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
 }
 
-#a42-ac-button {
+.barreAccessibilite #a42-ac-button {
+    width: auto;
     min-height: 44px;
     padding: 8px 20px;
-    border: 2px solid var(--couleur-claire);
+    border-color: var(--couleur-claire);
     border-radius: 30px;
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     color: var(--couleur-claire);
-    font-family: var(--police);
     font-size: 18px;
     font-weight: 700;
 }
 
-#a42-ac-button:hover {
-    background-color: var(--couleur-claire);
-    color: var(--couleur-sombre);
+.barreAccessibilite #a42-ac-button::before {
+    display: none;
 }
 
-#a42-ac-button:focus-visible {
-    outline: 3px solid var(--couleur-claire);
-    outline-offset: 3px;
+.barreAccessibilite #a42-ac-button:hover {
+    background-color: var(--couleur-claire);
+    color: var(--couleur-police);
 }
 
 /* CSS pour le header */
@@ -152,7 +257,7 @@ header {
     align-items: center;
     justify-content: space-between;
     width: calc(100% - 40px);
-    background-color: var(--couleur-fond-entete);
+    background-color: var(--couleur-secondaire);
 }
 
 /* CSS pour les boutons en haut à droite */
@@ -207,22 +312,21 @@ h1 {
     font-weight: 900;
     font-size: 80px;
     margin: auto 0;
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 /* CSS pour le bouton switch */
 .blocSwitch {
     width: 300px;
-    height: 50px;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    position: relative;
+    gap: 15px;
+    padding-right: 25px;
 }
 
 /* Interrupteur clair/sombre : piste + curseur portant un picto soleil ou lune */
 .interrupteurTheme {
-    position: absolute;
-    right: 25px;
     padding: 0;
     border-radius: 20px;
 }
@@ -233,7 +337,7 @@ h1 {
     width: 70px;
     height: 40px;
     border-radius: 20px;
-    background: var(--couleur-sombre);
+    background: var(--couleur-principale);
 }
 
 .interrupteurTheme:hover .pisteTheme {
@@ -251,7 +355,7 @@ h1 {
     height: 32px;
     border-radius: 50%;
     background: var(--couleur-claire);
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
     transform: translateY(-50%);
 }
 
@@ -289,7 +393,7 @@ h1 {
 
 .interrupteurTheme[aria-checked="true"] .curseurTheme {
     left: 34px;
-    background: var(--couleur-sombre);
+    background: var(--couleur-principale);
     color: var(--couleur-claire);
 }
 
@@ -303,7 +407,7 @@ h1 {
 
 /* Contour de focus visible au clavier */
 .interrupteurTheme:focus-visible {
-    outline: 3px solid var(--couleur-sombre);
+    outline: 3px solid var(--couleur-principale);
     outline-offset: 4px;
 }
 
@@ -318,7 +422,7 @@ h1 {
 .contenu {
     display: flex;
     justify-content: space-between;
-    background-color: var(--couleur-fond-entete);
+    background-color: var(--couleur-secondaire);
     padding: 0 50px 70px 50px;
 }
 
@@ -333,7 +437,7 @@ h1 {
 .presentation h2 {
     font-size: 50px;
     font-weight: 700;
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 .presentation p {
@@ -341,7 +445,7 @@ h1 {
     font-weight: 400;
     margin-top: 20px;
     line-height: 35px;
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 
@@ -353,9 +457,9 @@ h1 {
 .boutonAction {
     display: inline-block;
     padding: 18px 40px;
-    border: 3px solid var(--couleur-sombre);
+    border: 3px solid var(--couleur-principale);
     border-radius: 70px;
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     color: var(--couleur-claire);
     font-size: 24px;
     font-weight: 700;
@@ -363,22 +467,22 @@ h1 {
 
 .boutonAction:hover {
     background-color: var(--couleur-claire);
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 .boutonAction:focus-visible {
-    outline: 3px solid var(--couleur-sombre);
+    outline: 3px solid var(--couleur-principale);
     outline-offset: 4px;
 }
 
 .dark-mode .boutonAction {
     border-color: var(--couleur-claire);
     background-color: var(--couleur-claire);
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 .dark-mode .boutonAction:hover {
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     color: var(--couleur-claire);
 }
 
@@ -478,7 +582,7 @@ h1 {
     gap: 20px;
     min-height: 44px;
     padding: 15px 30px;
-    border: 3px solid var(--couleur-sombre);
+    border: 3px solid var(--couleur-principale);
     border-radius: 70px;
     font-size: 35px;
     font-weight: 700;
@@ -515,13 +619,13 @@ h1 {
 }
 
 .categorieLiens summary:hover {
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     color: var(--couleur-claire);
 }
 
 /* Contour de focus bien visible pour la navigation au clavier */
 .categorieLiens summary:focus-visible {
-    outline: 3px solid var(--couleur-sombre);
+    outline: 3px solid var(--couleur-principale);
     outline-offset: 4px;
 }
 
@@ -550,8 +654,16 @@ h1 {
     align-items: center;
     width: 85%;
     height: 100px;
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     border-radius: 70px;
+}
+
+/* Icônes des liens : même boîte pour toutes, qui ne change pas pendant
+   le changement d'image au survol (sinon le premier clic peut être perdu) */
+.boutonLien img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
 }
 
 .boutonLien div {
@@ -564,7 +676,7 @@ h1 {
 }
 
 .boutonLien:hover {
-    background-color: var(--couleur-survol-lien);
+    background-color: var(--couleur-tertiaire);
 }
 
 /* fin des boutons pour les liens en CSS */
@@ -572,12 +684,14 @@ h1 {
 /* Fenêtre de partage */
 .fenetrePartage {
     width: min(90vw, 520px);
+    max-height: 90vh;
+    overflow-y: auto;
     margin: auto;
     padding: 0;
-    border: 3px solid var(--couleur-sombre);
+    border: 3px solid var(--couleur-principale);
     border-radius: 30px;
     background-color: var(--couleur-claire);
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 .fenetrePartage::backdrop {
@@ -607,11 +721,11 @@ h1 {
     border-radius: 50%;
     font-size: 32px;
     line-height: 1;
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 .fermerFenetre:hover {
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     color: var(--couleur-claire);
 }
 
@@ -630,10 +744,10 @@ h1 {
     width: 100%;
     min-height: 56px;
     padding: 8px 15px;
-    border: 2px solid var(--couleur-sombre);
+    border: 2px solid var(--couleur-principale);
     border-radius: 20px;
     background-color: var(--couleur-claire);
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
     font-size: 18px;
     font-weight: 600;
     text-align: left;
@@ -642,7 +756,7 @@ h1 {
 
 .listePartage a:hover,
 .listePartage button:hover {
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     color: var(--couleur-claire);
 }
 
@@ -671,7 +785,7 @@ h1 {
 .fermerFenetre:focus-visible,
 .listePartage a:focus-visible,
 .listePartage button:focus-visible {
-    outline: 3px solid var(--couleur-sombre);
+    outline: 3px solid var(--couleur-principale);
     outline-offset: 3px;
 }
 
@@ -693,20 +807,20 @@ h1 {
 
 .dark-mode .fermerFenetre:hover {
     background-color: var(--couleur-claire);
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 .dark-mode .listePartage a,
 .dark-mode .listePartage button {
     border-color: var(--couleur-claire);
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     color: var(--couleur-claire);
 }
 
 .dark-mode .listePartage a:hover,
 .dark-mode .listePartage button:hover {
     background-color: var(--couleur-claire);
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 .dark-mode .fermerFenetre:focus-visible,
@@ -726,7 +840,7 @@ h1 {
 
 /* Couleurs du bouton : fond, flèche et contour (inversées au survol) */
 .boutonHautPage {
-    --fondBoutonHaut: var(--couleur-sombre);
+    --fondBoutonHaut: var(--couleur-principale);
     --flecheBoutonHaut: var(--couleur-claire);
     display: block;
     width: 70px;
@@ -735,7 +849,7 @@ h1 {
     border: none;
     border-radius: 50%;
     background: none;
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
     cursor: pointer;
 }
 
@@ -758,7 +872,7 @@ h1 {
 .boutonHautPage:hover,
 .boutonHautPage:focus-visible {
     --fondBoutonHaut: var(--couleur-claire);
-    --flecheBoutonHaut: var(--couleur-sombre);
+    --flecheBoutonHaut: var(--couleur-principale);
 }
 
 /* Contour de focus bien visible pour la navigation au clavier */
@@ -769,22 +883,25 @@ h1 {
 
 /* Fin bouton haut de page  */
 
-.listeFooter {
-    background-color: var(--couleur-sombre);
-    font-size: 30px;
-    font-weight: 400;
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-    padding-top: 20px;
+footer {
+    padding: 45px 20px 35px 20px;
+    background-color: var(--couleur-principale);
 }
 
-.listeFooter li {
-    width: 200px;
+.listeFooter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 70px;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
 }
 
 .listeFooter a {
     position: relative;
+    display: inline-block;
+    padding: 6px 0;
     color: var(--couleur-claire);
     text-decoration: none;
 }
@@ -797,24 +914,26 @@ h1 {
     width: 0;
     height: 2px;
     background-color: var(--couleur-claire);
-    transition: width 0.2s ease-in-out;
     transform: translateX(-50%);
 }
 
-.listeFooter a:hover::before {
-    width: 100%;
+@media (prefers-reduced-motion: no-preference) {
+    .listeFooter a::before {
+        transition: width 0.2s ease-in-out;
+    }
+}
 
+/* Lien de la page en cours : soulignement permanent */
+.listeFooter a:hover::before,
+.listeFooter a[aria-current="page"]::before {
+    width: 100%;
 }
 
 .copyright {
-    background-color: var(--couleur-sombre);
+    margin-top: 30px;
     color: var(--couleur-claire);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 18px;
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 /* CSS pour le darkmode */
@@ -856,7 +975,7 @@ h1 {
 
 .dark-mode .categorieLiens summary:hover {
     background-color: var(--couleur-claire);
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 .dark-mode .categorieLiens summary:focus-visible {
@@ -865,13 +984,13 @@ h1 {
 
 .dark-mode .boutonHautPage {
     --fondBoutonHaut: var(--couleur-claire);
-    --flecheBoutonHaut: var(--couleur-sombre);
+    --flecheBoutonHaut: var(--couleur-principale);
     color: var(--couleur-claire);
 }
 
 .dark-mode .boutonHautPage:hover,
 .dark-mode .boutonHautPage:focus-visible {
-    --fondBoutonHaut: var(--couleur-sombre);
+    --fondBoutonHaut: var(--couleur-principale);
     --flecheBoutonHaut: var(--couleur-claire);
 }
 
@@ -882,7 +1001,7 @@ h1 {
 }
 
 .dark-mode .boutonLien:hover p {
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 .dark-mode .boutonLien:hover .google-forms img {
@@ -915,6 +1034,26 @@ h1 {
 
 .dark-mode .boutonLien:hover .uncut img {
     content: url(images/logo/logoLien/uncutHover.svg);
+}
+
+.dark-mode .boutonLien:hover .mastodon img {
+    content: url(images/logo/logoLien/mastodonHover.svg);
+}
+
+.dark-mode .boutonLien:hover .bluesky img {
+    content: url(images/logo/logoLien/blueskyHover.svg);
+}
+
+.dark-mode .boutonLien:hover .threads img {
+    content: url(images/logo/logoLien/threadsHover.svg);
+}
+
+.dark-mode .boutonLien:hover .reddit img {
+    content: url(images/logo/logoLien/redditHover.svg);
+}
+
+.dark-mode .boutonLien:hover .medium img {
+    content: url(images/logo/logoLien/mediumHover.svg);
 }
 
 
@@ -1006,7 +1145,7 @@ h1 {
 
     .boutonLien img {
         width: 40px;
-        height: auto;
+        height: 40px;
     }
 }
 
@@ -1068,8 +1207,8 @@ h1 {
         width: 55px;
     }
 
-    .interrupteurTheme {
-        right: 5px;
+    .blocSwitch {
+        padding-right: 5px;
     }
 
     .textePublication h2 {
@@ -1118,45 +1257,8 @@ h1 {
 
 
 
-/* CSS pour le formulaire de contact */
+/* CSS du formulaire de contact (accordéon « Me contacter » de la page d'accueil) */
 
-.formulaire {
-    background-color: var(--couleur-fond-entete);
-}
-
-
-.headerFormulaire {
-    display: flex;
-    padding-top: 30px;
-    text-align: center;
-    align-items: center;
-    padding-bottom: 20px;
-
-}
-
-/* Bouton Accueil */
-
-
-.headerFormulaire a {
-    width: 300px;
-}
-
-.boutonAccueil img {
-    width: 80px;
-}
-
-.boutonAccueil:hover img {
-    content: url(images/boutonAccueil/boutonAccueilHover.svg);
-}
-
-/*titre de la page formulaire*/
-.titreFormulaire {
-    color: var(--couleur-sombre);
-    font-size: 50px;
-    font-weight: 800;
-    margin: 0 auto;
-    width: 50%;
-}
 
 form {
     display: flex;
@@ -1174,13 +1276,13 @@ form input {
     padding: 30px 30px;
     border-radius: 20px;
     margin-bottom: 20px;
-    border: solid 2px var(--couleur-sombre);
-    color: var(--couleur-sombre);
+    border: solid 2px var(--couleur-principale);
+    color: var(--couleur-police);
     margin: 10px auto;
 }
 
 form input::placeholder {
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 /*********************************/
@@ -1192,9 +1294,9 @@ form textarea {
     font-size: 20px;
     padding: 30px 30px;
     border-radius: 20px;
-    border-color: var(--couleur-sombre);
-    border: solid 2px var(--couleur-sombre);
-    color: var(--couleur-sombre);
+    border-color: var(--couleur-principale);
+    border: solid 2px var(--couleur-principale);
+    color: var(--couleur-police);
     margin: 10px auto;
 }
 
@@ -1209,7 +1311,7 @@ form textarea:focus-within {
 }
 
 form textarea::placeholder {
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 }
 
 /*****************************/
@@ -1227,13 +1329,13 @@ form button {
     margin: auto;
     margin-top: 50px;
     font-weight: 700;
-    border: var(--couleur-sombre) solid 2px;
+    border: var(--couleur-principale) solid 2px;
 }
 
 form button:hover {
     opacity: 80%;
     cursor: pointer;
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     color: var(--couleur-claire);
 }
 
@@ -1271,16 +1373,13 @@ form button:hover {
     font-weight: 400;
     width: 60%;
     margin: 30px auto;
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
     padding-bottom: 10px;
     border-radius: 20px;
 }
 
 /* CSS pour le darkmode du formulaire */
 
-.dark-mode .formulaire {
-    background-color: var(--couleur-entete-sombre);
-}
 
 
 
@@ -1289,13 +1388,13 @@ form button:hover {
 }
 
 .dark-mode form input {
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     border: solid 2px var(--couleur-claire);
     color: var(--couleur-claire);
 }
 
 .dark-mode form textarea {
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     border: solid 2px var(--couleur-claire);
     color: var(--couleur-claire);
 }
@@ -1309,93 +1408,160 @@ form button:hover {
 }
 
 .dark-mode form button {
-    background-color: var(--couleur-sombre);
+    background-color: var(--couleur-principale);
     border: var(--couleur-claire) solid 2px;
     color: var(--couleur-claire);
 }
 
 .dark-mode form button:hover {
     background-color: var(--couleur-claire);
-    color: var(--couleur-sombre);
+    color: var(--couleur-police);
 
 }
 
 /* FIn du darkmode pour le formulaire */
 
-/* Responsive du formulaire */
-/*  responsive pour les ecrans inférieurs à 1319px */
-@media (max-width: 1319px) {
+/* Fin du CSS du formulaire de contact */
 
-    .headerFormulaire .boutonAccueil {
-        width: 100px;
-    }
 
-    .boutonAccueil img {
-        width: 70px;
-    }
-
-    .blocSwitch {
-        width: 100px;
-    }
+/* CSS des pages secondaires (CGU, accessibilité, mentions légales) */
+.pageSecondaire {
+    background-color: var(--couleur-secondaire);
+    color: var(--couleur-police);
 }
 
-@media (max-width: 1100px) {}
-
-/* responsive pour l'équivalent d'un écran de telephone */
-
-@media (max-width: 600px) {
-    .titreFormulaire {
-        font-size: 40px;
-    }
-
-    .boutonAccueil img {
-        width: 60px;
-    }
-
-}
-
-
-
-/* Fin du CSS pour la page formulaire */
-
-
-/* CSS pour la page CGU */
-.headerCGU{
+.headerCGU {
+    width: auto;
     display: flex;
     justify-content: space-between;
-    padding: 50px auto;
-    width: 90%;
-}
-
-.cgu{
-    background-color: var(--couleur-fond-entete);
-}
-.titreCGU{
-    color: var(--couleur-sombre);
-    margin: 0 auto;
-    font-size: 60px;
-}
-
-.mainCGU{
     align-items: center;
-    text-align: center;
-    padding: 10px 0px;
-    color: var(--couleur-sombre);
-    width: 80%;
+    gap: 20px;
+    padding: 40px 5% 30px 5%;
+}
+
+.boutonAccueil {
+    flex: 0 0 auto;
+}
+
+.boutonAccueil img {
+    display: block;
+    width: 80px;
+    aspect-ratio: 1 / 1;
+}
+
+.boutonAccueil:hover img {
+    content: url(images/boutonAccueil/boutonAccueilHover.svg);
+}
+
+.boutonAccueil:focus-visible {
+    outline: 3px solid var(--couleur-principale);
+    outline-offset: 4px;
+    border-radius: 50%;
+}
+
+.titreCGU {
     margin: 0 auto;
+    color: var(--couleur-police);
+    font-size: 50px;
+    text-align: center;
 }
 
-.mainCGU h3{
-    color: var(--couleur-sombre);
+.headerCGU .blocSwitch {
+    width: auto;
 }
 
-/* CSS pour le darkmode */
+.mainCGU {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 5% 60px 5%;
+    color: var(--couleur-police);
+    font-size: 19px;
+    line-height: 1.6;
+}
 
-.dark-mode .cgu{
+.mainCGU h2 {
+    margin: 40px 0 15px 0;
+    font-size: 30px;
+}
+
+/* Pas de grande marge au-dessus du premier titre de la page */
+.mainCGU > section:first-of-type > h2:first-child,
+.mainCGU > h2:first-child {
+    margin-top: 0;
+}
+
+.mainCGU h3 {
+    margin: 30px 0 10px 0;
+    font-size: 23px;
+    color: var(--couleur-police);
+}
+
+.mainCGU p {
+    margin-bottom: 15px;
+}
+
+.listeTexte {
+    margin: 0 0 15px 1.5em;
+    list-style: disc;
+}
+
+.listeTexte li {
+    margin-bottom: 8px;
+}
+
+.mainCGU a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+/* Pages secondaires en mode sombre */
+.dark-mode .pageSecondaire {
     background-color: var(--couleur-entete-sombre);
     color: var(--couleur-claire);
 }
 
-.dark-mode .mainCGU h3{
+.dark-mode .titreCGU,
+.dark-mode .mainCGU,
+.dark-mode .mainCGU h3 {
     color: var(--couleur-claire);
+}
+
+.dark-mode .boutonAccueil:focus-visible {
+    outline-color: var(--couleur-claire);
+}
+
+/* Pages secondaires : responsive */
+@media (max-width: 1100px) {
+    .titreCGU {
+        font-size: 38px;
+    }
+
+    .boutonAccueil img {
+        width: 64px;
+    }
+}
+
+@media (max-width: 600px) {
+    .headerCGU {
+        flex-wrap: wrap;
+        padding-top: 25px;
+    }
+
+    .titreCGU {
+        order: 3;
+        width: 100%;
+        font-size: 30px;
+    }
+
+    .boutonAccueil img {
+        width: 52px;
+    }
+
+    .mainCGU {
+        font-size: 17px;
+    }
+
+    .mainCGU h2 {
+        font-size: 24px;
+    }
 }
