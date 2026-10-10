@@ -1,141 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Page Linktree de Prénom Nom - Page CGU">
+    <meta name="description" content="Page Linktree de Prénom Nom - Conditions générales d’utilisation">
     <title>Linktree Prénom Nom - CGU</title>
     <link rel="shortcut icon" type="image/svg+xml" href="images/photo-profil.svg">
-    <!-- Lien CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <!-- AccessConfig : paramètres d'affichage pour les visiteurs (après style.css pour pouvoir le surcharger) -->
     <link rel="stylesheet" href="accessconfig/css/accessconfig.min.css">
     <script src="accessconfig/js/accessconfig.min.js"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
 
 <body>
-    <!-- Bouton AccessConfig : contrastes, police adaptée à la dyslexie, interlignage… -->
+    <!-- Barre AccessConfig (optionnelle) : pour afficher le bouton « Paramètres d'accessibilité »
+         dans une barre en haut de page plutôt qu'à côté de l'interrupteur, décommentez ce bloc
+         et supprimez le <div id="accessconfig"> placé dans le bloc « blocSwitch » (un seul par page).
     <div class="barreAccessibilite">
         <div id="accessconfig" data-accessconfig-buttonname="Paramètres d’accessibilité" data-accessconfig-params='{ "Prefix" : "a42-ac", "ContainerClass" : "","ModalCloseButton" : "","ModalTitle" : "","FormFieldset" : "","FormFieldsetLegend" : "","FormRadio" : ""}'></div>
     </div>
-    <div class="cgu">
-    <header class="headerCGU">
+    -->
 
-    <a class="boutonAccueil" href="index.html" title="Retour à la page d'accueil">
+    <div class="pageSecondaire">
+        <header class="headerCGU">
+            <a class="boutonAccueil" href="index.html" title="Retour à la page d'accueil">
                 <img src="images/boutonAccueil/boutonAccueil.svg" alt="Retour à la page d'accueil">
             </a>
 
-    <h1 class="titreCGU"> Conditions Générales D'utilisateurs </h1>
+            <h1 class="titreCGU">Conditions générales d’utilisation</h1>
 
-    <div class="blocSwitch">
-        <button type="button" class="interrupteurTheme" id="themeSwitch" role="switch" aria-checked="false" aria-label="Mode sombre" title="Activer ou désactiver le mode sombre">
-            <span class="pisteTheme" aria-hidden="true">
-                <span class="curseurTheme">
-                    <!-- Picto soleil : mode clair -->
-                    <svg class="iconeSoleil" viewBox="0 0 24 24" focusable="false">
-                        <circle cx="12" cy="12" r="4" />
-                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-                    </svg>
-                    <!-- Picto lune : mode sombre -->
-                    <svg class="iconeLune" viewBox="0 0 24 24" focusable="false">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                    </svg>
-                </span>
-            </span>
-        </button>
+            <!-- Options d'affichage : paramètres d'accessibilité (AccessConfig) et mode clair/sombre -->
+            <div class="blocSwitch">
+                <div id="accessconfig" data-accessconfig-buttonname="Paramètres d’accessibilité" data-accessconfig-params='{ "Prefix" : "a42-ac", "ContainerClass" : "","ModalCloseButton" : "","ModalTitle" : "","FormFieldset" : "","FormFieldsetLegend" : "","FormRadio" : ""}'></div>
+                <button type="button" class="interrupteurTheme" id="themeSwitch" role="switch" aria-checked="false" aria-label="Mode sombre" title="Activer ou désactiver le mode sombre">
+                    <span class="pisteTheme" aria-hidden="true">
+                        <span class="curseurTheme">
+                            <!-- Picto soleil : mode clair -->
+                            <svg class="iconeSoleil" viewBox="0 0 24 24" focusable="false">
+                                <circle cx="12" cy="12" r="4" />
+                                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                            </svg>
+                            <!-- Picto lune : mode sombre -->
+                            <svg class="iconeLune" viewBox="0 0 24 24" focusable="false">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                            </svg>
+                        </span>
+                    </span>
+                </button>
+            </div>
+        </header>
+
+        <main class="mainCGU">
+            <!-- Modèle de CGU à compléter : remplacez [Nom de l’éditeur] et les ____ par vos informations, et gardez la variante choisie pour la propriété intellectuelle. -->
+            <p>Le présent document a pour objet de définir les modalités et conditions dans lesquelles d’une part, [Nom de l’éditeur], ci-après dénommé l’EDITEUR, met à la disposition de ses utilisateurs le site, et les services disponibles sur le site et d’autre part, la manière par laquelle l’utilisateur accède au site et utilise ses services.</p>
+            <p>Toute connexion au site est subordonnée au respect des présentes conditions.</p>
+            <p>Pour l’utilisateur, le simple accès au site de l’EDITEUR à l’adresse URL suivante ____ implique l’acceptation de l’ensemble des conditions décrites ci-après.</p>
+            <h2>Propriété intellectuelle</h2>
+            <h3>Variante 1</h3>
+            <p>La structure générale du site ____ , ainsi que les textes, graphiques, images, sons et vidéos la composant, sont la propriété de l'éditeur ou de ses partenaires. Toute représentation et/ou reproduction et/ou exploitation partielle ou totale des contenus et services proposés par le site ____ , par quelque procédé que ce soit, sans l'autorisation préalable et par écrit de ____ et/ou de ses partenaires est strictement interdite et serait susceptible de constituer une contrefaçon au sens des articles L 335-2 et suivants du Code de la propriété intellectuelle.</p>
+            <p>Les marques "____ ", "____" sont des marques déposées par____ .Toute représentation et/ou reproduction et/ou exploitation partielle ou totale de ces marques, de quelque nature que ce soit, est totalement prohibée.</p>
+            <h3>Variante 2</h3>
+            <p>Aucune reproduction, même partielle prévue à l’article L.122-5 du Code de la propriété intellectuelle, ne peut être faite de ce site sans l’autorisation du directeur de publication.</p>
+            <h3>Variante 3 </h3>
+            <p>Tous les éléments de ce site, y compris les documents téléchargeables, sont libres de droit. A l’exception de l’iconographie, la reproduction des pages de ce site est autorisée à la condition d’y mentionner la source. Elles ne peuvent être utilisées à des fins commerciales et publicitaires.</p>
+            <h2>Liens hypertextes</h2>
+            <p>Le site ____ peut contenir des liens hypertextes vers d’autres sites présents sur le réseau Internet. Les liens vers ces autres ressources vous font quitter le site ____ : l’EDITEUR n’est pas responsable du contenu de ces sites.</p>
+            <p>Il est possible de créer un lien vers la page de présentation de ce site sans autorisation expresse de l’EDITEUR. Aucune autorisation ou demande d’information préalable ne peut être exigée par l’éditeur à l’égard d’un site qui souhaite établir un lien vers le site de l’éditeur. Il convient toutefois d’afficher ce site dans une nouvelle fenêtre du navigateur. Cependant, l’EDITEUR se réserve le droit de demander la suppression d’un lien qu’il estime non conforme à l’objet du site ____</p>
+            <h2>Responsabilité de l'éditeur </h2>
+            <p>Les informations et/ou documents figurant sur ce site et/ou accessibles par ce site proviennent de sources considérées comme étant fiables.</p>
+            <p>Toutefois, ces informations et/ou documents sont susceptibles de contenir des inexactitudes techniques et des erreurs typographiques.</p>
+            <p>L’EDITEUR se réserve le droit de les corriger, dès que ces erreurs sont portées à sa connaissance.</p>
+            <p>Il est fortement recommandé de vérifier l’exactitude et la pertinence des informations et/ou documents mis à disposition sur ce site.</p>
+            <p>Les informations et/ou documents disponibles sur ce site sont susceptibles d’être modifiés à tout moment, et peuvent avoir fait l’objet de mises à jour. En particulier, ils peuvent avoir fait l’objet d’une mise à jour entre le moment de leur téléchargement et celui où l’utilisateur en prend connaissance.</p>
+            <p>L’utilisation des informations et/ou documents disponibles sur ce site se fait sous l’entière et seule responsabilité de l’utilisateur, qui assume la totalité des conséquences pouvant en découler, sans que l’EDITEUR puisse être recherché à ce titre, et sans recours contre ce dernier.</p>
+            <p>L’EDITEUR ne pourra en aucun cas être tenu responsable de tout dommage de quelque nature qu’il soit résultant de l’interprétation ou de l’utilisation des informations et/ou documents disponibles sur ce site.</p>
+            <h2>Accès au site </h2>
+            <p>L’éditeur s’efforce de permettre l’accès au site 24 heures sur 24, 7 jours sur 7, sauf en cas de force majeure ou d’un événement hors du contrôle de l’EDITEUR, et sous réserve des éventuelles pannes et interventions de maintenance nécessaires au bon fonctionnement du site et des services.</p>
+            <p>Par conséquent, l’EDITEUR ne peut garantir une disponibilité du site et/ou des services, une fiabilité des transmissions et des performances en terme de temps de réponse ou de qualité. Il n’est prévu aucune assistance technique vis à vis de l’utilisateur que ce soit par des moyens électronique ou téléphonique.</p>
+            <p>La responsabilité de l’éditeur ne saurait être engagée en cas d’impossibilité d’accès à ce site et/ou d’utilisation des services.</p>
+            <p>Par ailleurs, l’EDITEUR peut être amené à interrompre le site ou une partie des services, à tout moment sans préavis, le tout sans droit à indemnités. L’utilisateur reconnaît et accepte que l’EDITEUR ne soit pas responsable des interruptions, et des conséquences qui peuvent en découler pour l’utilisateur ou tout tiers.</p>
+            <h2>Modifications des conditions d'utilisation</h2>
+            <p>L’EDITEUR se réserve la possibilité de modifier, à tout moment et sans préavis, les présentes conditions d’utilisation afin de les adapter aux évolutions du site et/ou de son exploitation.</p>
+            <h2>Règles d'usage d'Internet</h2>
+            <p>L’utilisateur déclare accepter les caractéristiques et les limites d’Internet, et notamment reconnaît que :</p>
+            <p>L’EDITEUR n’assume aucune responsabilité sur les services accessibles par Internet et n’exerce aucun contrôle de quelque forme que ce soit sur la nature et les caractéristiques des données qui pourraient transiter par l’intermédiaire de son centre serveur.</p>
+            <p>L’utilisateur reconnaît que les données circulant sur Internet ne sont pas protégées notamment contre les détournements éventuels. La présence du logo ____ institue une présomption simple de validité. La communication de toute information jugée par l’utilisateur de nature sensible ou confidentielle se fait à ses risques et périls.</p>
+            <p>L’utilisateur reconnaît que les données circulant sur Internet peuvent être réglementées en termes d’usage ou être protégées par un droit de propriété.</p>
+            <p>L’utilisateur est seul responsable de l’usage des données qu’il consulte, interroge et transfère sur Internet.</p>
+            <p>L’utilisateur reconnaît que l’EDITEUR ne dispose d’aucun moyen de contrôle sur le contenu des services accessibles sur Internet</p>
+            <h2>Droit applicable</h2>
+            <p>Tant le présent site que les modalités et conditions de son utilisation sont régis par le droit français, quel que soit le lieu d’utilisation. En cas de contestation éventuelle, et après l’échec de toute tentative de recherche d’une solution amiable, les tribunaux français seront seuls compétents pour connaître de ce litige.</p>
+        </main>
     </div>
 
-</header>
-<main class="mainCGU">
-    <!-- CGU (conditions générales d'utilisateurs) -->
-
-        <p>Le présent document a pour objet de définir les modalités et conditions dans lesquelles d’une part, [Nom de l’éditeur], ci-après dénommé l’EDITEUR, met à la disposition de ses utilisateurs le site, et les services disponibles sur le site et d’autre part, la manière par laquelle l’utilisateur accède au site et utilise ses services.</p><br />
-        <p>Toute connexion au site est subordonnée au respect des présentes conditions.</p><br />
-        <p>Pour l’utilisateur, le simple accès au site de l’EDITEUR à l’adresse URL suivante ____ implique l’acceptation de l’ensemble des conditions décrites ci-après.</p><br />
-
-        <h2>Propriété intellectuelle</h2>
-        <!--TITRE-->
-        <h3>Variante 1</h3>
-        <!--SOUS TITRE-->
-
-        <p>La structure générale du site ____ , ainsi que les textes, graphiques, images, sons et vidéos la composant, sont la propriété de l'éditeur ou de ses partenaires. Toute représentation et/ou reproduction et/ou exploitation partielle ou totale des contenus et services proposés par le site ____ , par quelque procédé que ce soit, sans l'autorisation préalable et par écrit de ____ et/ou de ses partenaires est strictement interdite et serait susceptible de constituer une contrefaçon au sens des articles L 335-2 et suivants du Code de la propriété intellectuelle.</p><br />
-        <p>Les marques "____ ", "____" sont des marques déposées par____ .Toute représentation et/ou reproduction et/ou exploitation partielle ou totale de ces marques, de quelque nature que ce soit, est totalement prohibée.</p><br />
-
-        <h3>Variante 2</h3>
-        <!--SOUS TITRE-->
-        <p>Aucune reproduction, même partielle prévue à l’article L.122-5 du Code de la propriété intellectuelle, ne peut être faite de ce site sans l’autorisation du directeur de publication.</p><br />
-
-        <h3>Variante 3 </h3>
-        <!--SOUS TITRE-->
-        <p>Tous les éléments de ce site, y compris les documents téléchargeables, sont libres de droit. A l’exception de l’iconographie, la reproduction des pages de ce site est autorisée à la condition d’y mentionner la source. Elles ne peuvent être utilisées à des fins commerciales et publicitaires.</p><br />
-
-        <h2>Liens hypertextes</h2>
-        <!--TITRE-->
-        <p>Le site ____ peut contenir des liens hypertextes vers d’autres sites présents sur le réseau Internet. Les liens vers ces autres ressources vous font quitter le site ____
-
-        <p>Il est possible de créer un lien vers la page de présentation de ce site sans autorisation expresse de l’EDITEUR. Aucune autorisation ou demande d’information préalable ne peut être exigée par l’éditeur à l’égard d’un site qui souhaite établir un lien vers le site de l’éditeur. Il convient toutefois d’afficher ce site dans une nouvelle fenêtre du navigateur. Cependant, l’EDITEUR se réserve le droit de demander la suppression d’un lien qu’il estime non conforme à l’objet du site ____</p><br />
-
-        <h2>Responsabilité de l'éditeur </h2>
-        <!--TITRE-->
-        <p>Les informations et/ou documents figurant sur ce site et/ou accessibles par ce site proviennent de sources considérées comme étant fiables.</p><br />
-
-        <p>Toutefois, ces informations et/ou documents sont susceptibles de contenir des inexactitudes techniques et des erreurs typographiques.</p><br />
-
-        <p>L’EDITEUR se réserve le droit de les corriger, dès que ces erreurs sont portées à sa connaissance.</p><br />
-
-        <p>Il est fortement recommandé de vérifier l’exactitude et la pertinence des informations et/ou documents mis à disposition sur ce site.</p><br />
-
-        <p>Les informations et/ou documents disponibles sur ce site sont susceptibles d’être modifiés à tout moment, et peuvent avoir fait l’objet de mises à jour. En particulier, ils peuvent avoir fait l’objet d’une mise à jour entre le moment de leur téléchargement et celui où l’utilisateur en prend connaissance.</p><br />
-
-        <p>L’utilisation des informations et/ou documents disponibles sur ce site se fait sous l’entière et seule responsabilité de l’utilisateur, qui assume la totalité des conséquences pouvant en découler, sans que l’EDITEUR puisse être recherché à ce titre, et sans recours contre ce dernier.</p><br />
-
-        <p>L’EDITEUR ne pourra en aucun cas être tenu responsable de tout dommage de quelque nature qu’il soit résultant de l’interprétation ou de l’utilisation des informations et/ou documents disponibles sur ce site.</p><br />
-
-        <h2>Accès au site </h2>
-        <!--TITRE-->
-        <p>L’éditeur s’efforce de permettre l’accès au site 24 heures sur 24, 7 jours sur 7, sauf en cas de force majeure ou d’un événement hors du contrôle de l’EDITEUR, et sous réserve des éventuelles pannes et interventions de maintenance nécessaires au bon fonctionnement du site et des services.</p><br />
-        <p>Par conséquent, l’EDITEUR ne peut garantir une disponibilité du site et/ou des services, une fiabilité des transmissions et des performances en terme de temps de réponse ou de qualité. Il n’est prévu aucune assistance technique vis à vis de l’utilisateur que ce soit par des moyens électronique ou téléphonique.</p><br />
-        <p>La responsabilité de l’éditeur ne saurait être engagée en cas d’impossibilité d’accès à ce site et/ou d’utilisation des services.</p><br />
-        <p>Par ailleurs, l’EDITEUR peut être amené à interrompre le site ou une partie des services, à tout moment sans préavis, le tout sans droit à indemnités. L’utilisateur reconnaît et accepte que l’EDITEUR ne soit pas responsable des interruptions, et des conséquences qui peuvent en découler pour l’utilisateur ou tout tiers.</p><br />
-
-        <h2>Modifications des conditions d'utilisation</h2>
-        <!--TITRE-->
-        <p>L’EDITEUR se réserve la possibilité de modifier, à tout moment et sans préavis, les présentes conditions d’utilisation afin de les adapter aux évolutions du site et/ou de son exploitation.</p><br />
-
-        <h2>Règles d'usage d'Internet</h2>
-        <!--TITRE-->
-        <p>L’utilisateur déclare accepter les caractéristiques et les limites d’Internet, et notamment reconnaît que :</p><br />
-        <p>L’EDITEUR n’assume aucune responsabilité sur les services accessibles par Internet et n’exerce aucun contrôle de quelque forme que ce soit sur la nature et les caractéristiques des données qui pourraient transiter par l’intermédiaire de son centre serveur.</p><br />
-        <p>L’utilisateur reconnaît que les données circulant sur Internet ne sont pas protégées notamment contre les détournements éventuels. La présence du logo ____ institue une présomption simple de validité. La communication de toute information jugée par l’utilisateur de nature sensible ou confidentielle se fait à ses risques et périls.</p><br />
-        <p>L’utilisateur reconnaît que les données circulant sur Internet peuvent être réglementées en termes d’usage ou être protégées par un droit de propriété.</p><br />
-        <p>L’utilisateur est seul responsable de l’usage des données qu’il consulte, interroge et transfère sur Internet.</p><br />
-        <p>L’utilisateur reconnaît que l’EDITEUR ne dispose d’aucun moyen de contrôle sur le contenu des services accessibles sur Internet</p><br />
-
-        <h2>Droit applicable</h2>
-        <!--TITRE-->
-        <p>Tant le présent site que les modalités et conditions de son utilisation sont régis par le droit français, quel que soit le lieu d’utilisation. En cas de contestation éventuelle, et après l’échec de toute tentative de recherche d’une solution amiable, les tribunaux français seront seuls compétents pour connaître de ce litige.</p>
-    </main>
-        <!-- FOOTER -->
-        <footer>
-            <!-- Liens du footer -->
+    <!-- FOOTER : identique sur toutes les pages -->
+    <footer>
+        <nav aria-label="Informations légales">
             <ul class="listeFooter">
-                <li><a href="CGU.html" title="Conditions générales d'utilisation">CGU</a></li>
+                <li><a href="CGU.html" aria-label="C.G.U. : conditions générales d’utilisation" aria-current="page">C.G.U.</a></li>
                 <li><a href="accessibilite.html">Accessibilité</a></li>
-                <li><a href="contact.html">Me contacter</a></li>
+                <li><a href="mentions-legales.html">Mentions légales</a></li>
             </ul>
-    
-            <!-- Mention légale -->
-            <div class="copyright">
-                <p>
-                    Mentions légales | &copy; Copyright 2023 | Version 0.01
-                </p>
-            </div>
-        </footer>
+        </nav>
+        <p class="copyright">&copy; Copyright 2026 | Version 0.01</p>
+    </footer>
+
     <script src="script.js"></script>
-</div>
 </body>
 
 </html>

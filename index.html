@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Page Linktree de Prénom Nom">
+    <meta name="description" content="Page de liens de Prénom Nom, réalisée avec Oplinbio">
     <title>Linktree Prénom Nom</title>
     <link rel="shortcut icon" type="image/svg+xml" href="images/photo-profil.svg">
     <!-- Lien CSS -->
@@ -27,10 +27,13 @@
         </ul>
     </nav>
 
-    <!-- Bouton AccessConfig : contrastes, police adaptée à la dyslexie, interlignage… -->
+    <!-- Barre AccessConfig (optionnelle) : pour afficher le bouton « Paramètres d'accessibilité »
+         dans une barre en haut de page plutôt qu'à côté de l'interrupteur, décommentez ce bloc
+         et supprimez le <div id="accessconfig"> placé dans le bloc « blocSwitch » (un seul par page).
     <div class="barreAccessibilite">
         <div id="accessconfig" data-accessconfig-buttonname="Paramètres d’accessibilité" data-accessconfig-params='{ "Prefix" : "a42-ac", "ContainerClass" : "","ModalCloseButton" : "","ModalTitle" : "","FormFieldset" : "","FormFieldsetLegend" : "","FormRadio" : ""}'></div>
     </div>
+    -->
 
     <!-- HEADER -->
     <header>
@@ -70,8 +73,9 @@
             <h1>Prénom Nom</h1>
         </div>
 
-        <!-- Bouton switch darkmode/lightmode -->
+        <!-- Options d'affichage : paramètres d'accessibilité (AccessConfig) et mode clair/sombre -->
         <div class="blocSwitch">
+            <div id="accessconfig" data-accessconfig-buttonname="Paramètres d’accessibilité" data-accessconfig-params='{ "Prefix" : "a42-ac", "ContainerClass" : "","ModalCloseButton" : "","ModalTitle" : "","FormFieldset" : "","FormFieldsetLegend" : "","FormRadio" : ""}'></div>
             <button type="button" class="interrupteurTheme" id="themeSwitch" role="switch" aria-checked="false" aria-label="Mode sombre" title="Activer ou désactiver le mode sombre">
                 <span class="pisteTheme" aria-hidden="true">
                     <span class="curseurTheme">
@@ -95,19 +99,22 @@
         <div class="contenu">
             <!-- Présentation écrite -->
             <div class="presentation">
-                <!-- Titre de la présentation -->
-                <h2>Votre titre ou accroche</h2>
+                <!-- Titre de la présentation : remplacez-le par votre titre ou votre accroche -->
+                <h2>Oplinbio, votre page de liens libre et accessible</h2>
 
-                <!-- Texte de présentation -->
+                <!-- Texte de présentation : remplacez ces paragraphes par votre propre présentation -->
                 <div class="texte">
                     <p>
-                        Présentez-vous en quelques phrases : votre métier, vos domaines
-                        de compétence et ce que les visiteurs trouveront dans vos liens.
+                        Oplinbio est un modèle open source pour créer sa page de liens, à la manière
+                        d'un « linktree » : une page à votre nom, hébergée où vous le souhaitez, sans
+                        pistage ni publicité, et conçue pour être accessible à toutes et à tous.
                     </p>
-                    <br />
                     <p>
-                        Ajoutez un deuxième paragraphe si besoin (parcours, projets,
-                        engagements…), ou supprimez-le.
+                        Pour en faire la vôtre, remplacez « Prénom Nom », ce titre et ce texte par
+                        votre présentation (votre métier, vos domaines de compétence, ce que les
+                        visiteurs trouveront dans vos liens), puis changez la photo, les réseaux
+                        sociaux et les liens ci-dessous. Le guide pas à pas se trouve dans le README
+                        du projet.
                     </p>
                 </div>
 
@@ -124,36 +131,77 @@
                 <img src="images/photo-profil.svg" alt="Photo de profil de Prénom Nom">
             </div>
 
-            <!-- Boutons réseaux sociaux -->
+            <!-- Boutons des réseaux sociaux : les réseaux commentés sont prêts à l'emploi,
+                 décommentez-les (et commentez ceux dont vous n'avez pas besoin). -->
             <ul class="boutonReseaux">
+                <!-- Lien vers Instagram -->
                 <li>
                     <a class="instagram" href="https://www.instagram.com/votre-compte" target="_blank" rel="noopener" title="Instagram (nouvel onglet)">
-                        <!-- Icône pour le lien Instagram -->
                         <img src="images/logo/boutonReseau/instagram.svg" alt="Instagram">
                         <span class="sr-only">(nouvel onglet)</span>
                     </a>
                 </li>
+                <!-- Lien vers Bluesky -->
                 <li>
-                    <a class="twitter" href="https://twitter.com/votre-compte" target="_blank" rel="noopener" title="Twitter (nouvel onglet)">
-                        <!-- Icône pour le lien Twitter -->
-                        <img src="images/logo/boutonReseau/twitter.svg" alt="Twitter">
+                    <a class="bluesky" href="https://bsky.app/profile/votre-compte.bsky.social" target="_blank" rel="noopener" title="Bluesky (nouvel onglet)">
+                        <img src="images/logo/boutonReseau/bluesky.svg" alt="Bluesky">
                         <span class="sr-only">(nouvel onglet)</span>
                     </a>
                 </li>
+                <!-- Lien vers LinkedIn -->
                 <li>
                     <a class="linkedin" href="https://www.linkedin.com/in/votre-compte" target="_blank" rel="noopener" title="LinkedIn (nouvel onglet)">
-                        <!-- Icône pour le lien LinkedIn -->
                         <img src="images/logo/boutonReseau/linkedin.svg" alt="LinkedIn">
                         <span class="sr-only">(nouvel onglet)</span>
                     </a>
                 </li>
+                <!-- Lien vers Facebook -->
                 <li>
                     <a class="facebook" href="https://www.facebook.com/votre-compte" target="_blank" rel="noopener" title="Facebook (nouvel onglet)">
-                        <!-- Icône pour le lien Facebook -->
                         <img src="images/logo/boutonReseau/facebook.svg" alt="Facebook">
                         <span class="sr-only">(nouvel onglet)</span>
                     </a>
                 </li>
+                <!-- Lien vers X (Twitter) (à décommenter pour l'afficher)
+                <li>
+                    <a class="twitter" href="https://x.com/votre-compte" target="_blank" rel="noopener" title="X (Twitter) (nouvel onglet)">
+                        <img src="images/logo/boutonReseau/twitter.svg" alt="X (Twitter)">
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                -->
+                <!-- Lien vers Mastodon (à décommenter pour l'afficher)
+                <li>
+                    <a class="mastodon" href="https://mastodon.social/@votre-compte" target="_blank" rel="noopener" title="Mastodon (nouvel onglet)">
+                        <img src="images/logo/boutonReseau/mastodon.svg" alt="Mastodon">
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                -->
+                <!-- Lien vers Threads (à décommenter pour l'afficher)
+                <li>
+                    <a class="threads" href="https://www.threads.com/@votre-compte" target="_blank" rel="noopener" title="Threads (nouvel onglet)">
+                        <img src="images/logo/boutonReseau/threads.svg" alt="Threads">
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                -->
+                <!-- Lien vers Reddit (à décommenter pour l'afficher)
+                <li>
+                    <a class="reddit" href="https://www.reddit.com/user/votre-compte" target="_blank" rel="noopener" title="Reddit (nouvel onglet)">
+                        <img src="images/logo/boutonReseau/reddit.svg" alt="Reddit">
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                -->
+                <!-- Lien vers WhatsApp (à décommenter pour l'afficher)
+                <li>
+                    <a class="whatsapp" href="https://wa.me/33600000000" target="_blank" rel="noopener" title="WhatsApp (nouvel onglet)">
+                        <img src="images/logo/boutonReseau/whatsapp.svg" alt="WhatsApp">
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                -->
             </ul>
         </div>
         <!-- FIN de la présentation -->
@@ -220,7 +268,7 @@
                             </div>
                         </a>
                     </li>
-                    <!-- Lien vers Substack (à décommenter pour l'afficher)
+                    <!-- Lien vers Substack -->
                     <li>
                         <a class="boutonLien" href="https://votre-compte.substack.com/" target="_blank" rel="noopener">
                             <div class="substack">
@@ -230,7 +278,63 @@
                             </div>
                         </a>
                     </li>
-                    -->
+                    <!-- Lien vers Medium -->
+                    <li>
+                        <a class="boutonLien" href="https://medium.com/@votre-compte" target="_blank" rel="noopener">
+                            <div class="medium">
+                                <img src="images/logo/logoLien/medium.svg" alt="">
+                                <p>Medium</p>
+                                <span class="sr-only">(nouvel onglet)</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </details>
+
+            <!-- Catégorie : Réseaux sociaux -->
+            <details class="categorieLiens">
+                <summary>Réseaux sociaux</summary>
+                <ul class="blocBoutonLien">
+                    <!-- Lien vers Mastodon -->
+                    <li>
+                        <a class="boutonLien" href="https://mastodon.social/@votre-compte" target="_blank" rel="noopener">
+                            <div class="mastodon">
+                                <img src="images/logo/logoLien/mastodon.svg" alt="">
+                                <p>Mastodon</p>
+                                <span class="sr-only">(nouvel onglet)</span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- Lien vers Bluesky -->
+                    <li>
+                        <a class="boutonLien" href="https://bsky.app/profile/votre-compte.bsky.social" target="_blank" rel="noopener">
+                            <div class="bluesky">
+                                <img src="images/logo/logoLien/bluesky.svg" alt="">
+                                <p>Bluesky</p>
+                                <span class="sr-only">(nouvel onglet)</span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- Lien vers Threads -->
+                    <li>
+                        <a class="boutonLien" href="https://www.threads.com/@votre-compte" target="_blank" rel="noopener">
+                            <div class="threads">
+                                <img src="images/logo/logoLien/threads.svg" alt="">
+                                <p>Threads</p>
+                                <span class="sr-only">(nouvel onglet)</span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- Lien vers Reddit -->
+                    <li>
+                        <a class="boutonLien" href="https://www.reddit.com/user/votre-compte" target="_blank" rel="noopener">
+                            <div class="reddit">
+                                <img src="images/logo/logoLien/reddit.svg" alt="">
+                                <p>Reddit</p>
+                                <span class="sr-only">(nouvel onglet)</span>
+                            </div>
+                        </a>
+                    </li>
                 </ul>
             </details>
 
@@ -272,11 +376,8 @@
                     -->
                 </ul>
             </details>
-        </div>
-        <!-- Fin des liens classés par catégorie -->
 
-        <!-- Formulaire de contact dans un accordéon -->
-        <div class="categoriesLiens">
+            <!-- Formulaire de contact dans un accordéon (même liste que les catégories : espacement identique) -->
             <details class="categorieLiens" id="contact">
                 <summary>Me contacter</summary>
                 <form class="formulaireContact" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST">
@@ -301,7 +402,7 @@
                 </form>
             </details>
         </div>
-        <!-- Fin du formulaire de contact -->
+        <!-- Fin des liens classés par catégorie et du formulaire de contact -->
 
         <!-- Bouton haut de page -->
         <div class="blocBoutonHautPage">
@@ -348,10 +449,36 @@
                     </a>
                 </li>
                 <li>
+                    <a id="partageMastodon" href="https://toot.kytta.dev/" target="_blank" rel="noopener">
+                        <img src="images/logo/boutonReseau/mastodon.svg" alt="">
+                        <span>Mastodon</span>
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="partageBluesky" href="https://bsky.app/intent/compose" target="_blank" rel="noopener">
+                        <img src="images/logo/boutonReseau/bluesky.svg" alt="">
+                        <span>Bluesky</span>
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="partageThreads" href="https://www.threads.com/intent/post" target="_blank" rel="noopener">
+                        <img src="images/logo/boutonReseau/threads.svg" alt="">
+                        <span>Threads</span>
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="partageReddit" href="https://www.reddit.com/submit" target="_blank" rel="noopener">
+                        <img src="images/logo/boutonReseau/reddit.svg" alt="">
+                        <span>Reddit</span>
+                        <span class="sr-only">(nouvel onglet)</span>
+                    </a>
+                </li>
+                <li>
                     <a id="partageWhatsapp" href="https://wa.me/" target="_blank" rel="noopener">
-                        <svg class="iconePartage" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z" />
-                        </svg>
+                        <img src="images/logo/boutonReseau/whatsapp.svg" alt="">
                         <span>WhatsApp</span>
                         <span class="sr-only">(nouvel onglet)</span>
                     </a>
@@ -386,21 +513,16 @@
         </div>
     </dialog>
 
-    <!-- FOOTER -->
+    <!-- FOOTER : identique sur toutes les pages -->
     <footer>
-        <!-- Liens du footer -->
-        <ul class="listeFooter">
-            <li><a href="CGU.html" title="Conditions générales d'utilisation">CGU</a></li>
-            <!--<li><a href="accessibilite.html">Accessibilité</a></li>-->
-            <li><a href="#contact" title="Ouvrir le formulaire de contact">Me contacter</a></li>
-        </ul>
-
-        <!-- Mention légale -->
-        <div class="copyright">
-            <p>
-                Mentions légales | &copy; Copyright 2023 | Version 0.01
-            </p>
-        </div>
+        <nav aria-label="Informations légales">
+            <ul class="listeFooter">
+                <li><a href="CGU.html" aria-label="C.G.U. : conditions générales d’utilisation">C.G.U.</a></li>
+                <li><a href="accessibilite.html">Accessibilité</a></li>
+                <li><a href="mentions-legales.html">Mentions légales</a></li>
+            </ul>
+        </nav>
+        <p class="copyright">&copy; Copyright 2026 | Version 0.01</p>
     </footer>
     <!-- Lien vers le fichier JS pour les animations-->
     <script src="script.js"></script>

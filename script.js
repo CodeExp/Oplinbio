@@ -92,6 +92,11 @@ function preparerLiensPartage() {
         partageFacebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
         partageTwitter: 'https://twitter.com/intent/tweet?url=' + url + '&text=' + texte,
         partageLinkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + url,
+        // Mastodon : Toot! (outil libre) demande l'instance du visiteur avant de partager
+        partageMastodon: 'https://toot.kytta.dev/?text=' + texte + '%20' + url,
+        partageBluesky: 'https://bsky.app/intent/compose?text=' + texte + '%20' + url,
+        partageThreads: 'https://www.threads.com/intent/post?text=' + texte + '%20' + url,
+        partageReddit: 'https://www.reddit.com/submit?url=' + url + '&title=' + encodeURIComponent(TITRE_PARTAGE),
         partageWhatsapp: 'https://wa.me/?text=' + texte + '%20' + url,
         partageEmail: 'mailto:?subject=' + encodeURIComponent(TITRE_PARTAGE) + '&body=' + texte + '%20' + url
     };
@@ -296,3 +301,12 @@ document.querySelectorAll('a[href^="#"]').forEach(function (lien) {
 
 // Si la page est ouverte directement avec une ancre (ex. index.html#contact)
 ouvrirAccordeonCible(window.location.hash.slice(1));
+
+// AccessConfig crée son bouton au chargement de la page : on lui ajoute une infobulle,
+// utile quand il est affiché sous forme de pictogramme à côté de l'interrupteur.
+window.addEventListener('load', function () {
+    const boutonAccessConfig = document.getElementById('a42-ac-button');
+    if (boutonAccessConfig && !boutonAccessConfig.title) {
+        boutonAccessConfig.title = boutonAccessConfig.textContent.trim();
+    }
+});
