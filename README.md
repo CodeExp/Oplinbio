@@ -1,4 +1,4 @@
-# Golum-Linktree
+# Oplinbio-Linktree
 Modèle de Linktree pour créer facilement sa page de Linktree sur Github
 
 ## Créer son Linktree à partir du modèle
