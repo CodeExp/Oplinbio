@@ -63,14 +63,79 @@ if (themeSwitch) {
     });
 }
 
-// pour ajouter le site aux favoris
+// Garder cette page (rubrique de la fenêtre de partage)
+// - Aucun navigateur ne permet à une page d'ajouter elle-même un favori :
+//   on explique donc comment faire, selon l'appareil du visiteur.
+// - Le bouton « Installer sur l'appareil » n'apparaît que si le navigateur
+//   propose l'installation (Chrome, Edge, Android… sur une adresse en https).
 
-function favoris() {
-    if (navigator.appName != 'Microsoft Internet Explorer') {
-        window.alert("Pour ajouter le site aux favoris, veuillez passer par votre navigateur");
-    } else {
-        window.external.AddFavorite("https://www.example.fr", "example.com");
+function texteAideFavoris() {
+    const agent = navigator.userAgent || '';
+    const plateforme = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+    // Les iPad récents se présentent comme un Mac : on les reconnaît à leur écran tactile
+    const ios = /iPhone|iPad|iPod/.test(agent) || (/Mac/.test(plateforme) && navigator.maxTouchPoints > 1);
+    if (ios) {
+        return 'Pour la retrouver facilement, touchez le bouton Partager de Safari, puis «\u00a0Ajouter aux favoris\u00a0» ou «\u00a0Sur l\'écran d\'accueil\u00a0».';
     }
+    if (/Android/.test(agent)) {
+        return 'Pour la retrouver facilement, ouvrez le menu de votre navigateur, puis touchez l\'étoile ou «\u00a0Ajouter à l\'écran d\'accueil\u00a0».';
+    }
+    const raccourci = /Mac/.test(plateforme) ? '⌘ + D' : 'Ctrl + D';
+    return 'Pour la retrouver facilement, ajoutez-la à vos favoris\u00a0: appuyez sur ' + raccourci + ' ou utilisez le menu de votre navigateur.';
+}
+
+function preparerAideFavoris() {
+    const aide = document.getElementById('aideFavoris');
+    if (aide) {
+        aide.textContent = texteAideFavoris();
+    }
+}
+
+// Proposition d'installation gardée par le navigateur jusqu'au clic sur le bouton
+let propositionInstallation = null;
+
+function afficherBoutonInstaller(visible) {
+    const installerItem = document.getElementById('installerItem');
+    if (installerItem) {
+        installerItem.hidden = !visible;
+    }
+}
+
+window.addEventListener('beforeinstallprompt', function (evenement) {
+    // Pas de bandeau automatique : l'installation est proposée dans la fenêtre de partage
+    evenement.preventDefault();
+    propositionInstallation = evenement;
+    afficherBoutonInstaller(true);
+});
+
+window.addEventListener('appinstalled', function () {
+    propositionInstallation = null;
+    afficherBoutonInstaller(false);
+});
+
+function installerApplication() {
+    if (!propositionInstallation) {
+        return;
+    }
+    const proposition = propositionInstallation;
+    proposition.prompt();
+    proposition.userChoice.then(function (choix) {
+        if (choix.outcome !== 'accepted') {
+            return;
+        }
+        // La proposition ne sert qu'une fois : on retire le bouton, en replaçant d'abord
+        // le focus sur le titre de la fenêtre pour ne pas le perdre
+        propositionInstallation = null;
+        const titre = document.getElementById('titrePartage');
+        if (titre) {
+            titre.setAttribute('tabindex', '-1');
+            titre.focus();
+        }
+        afficherBoutonInstaller(false);
+        afficherMessagePartage('La page est installée sur votre appareil.');
+    }).catch(function () {
+        // Installation impossible : le bouton reste disponible
+    });
 }
 
 
@@ -119,6 +184,7 @@ function ouvrirPartage() {
         return;
     }
     preparerLiensPartage();
+    preparerAideFavoris();
     document.getElementById('messagePartage').textContent = '';
     if (typeof fenetre.showModal === 'function') {
         fenetre.showModal();

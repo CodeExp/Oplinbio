@@ -321,11 +321,6 @@ header {
 
 }
 
-.favori :hover {
-    content: url(images/logo/boutonRond/favoriHover.svg);
-
-}
-
 .partager :hover {
     content: url(images/logo/boutonRond/partagerHover.svg);
 
@@ -787,7 +782,8 @@ h1 {
 }
 
 .listePartage a,
-.listePartage button {
+.listePartage button,
+.garderPage button {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -805,7 +801,8 @@ h1 {
 }
 
 .listePartage a:hover,
-.listePartage button:hover {
+.listePartage button:hover,
+.garderPage button:hover {
     background-color: var(--couleur-principale);
     color: var(--couleur-claire);
 }
@@ -832,9 +829,32 @@ h1 {
     display: none;
 }
 
+/* Rubrique « Garder cette page » de la fenêtre de partage */
+.garderPage {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 2px solid currentColor;
+}
+
+.garderPage h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.garderPage p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.garderPage #installerItem {
+    margin-top: 15px;
+}
+
 .fermerFenetre:focus-visible,
 .listePartage a:focus-visible,
-.listePartage button:focus-visible {
+.listePartage button:focus-visible,
+.garderPage button:focus-visible {
     outline: var(--epaisseur-focus) solid var(--couleur-principale);
     outline-offset: calc(var(--decalage-focus) - 1px);
 }
@@ -847,7 +867,8 @@ h1 {
 }
 
 .dark-mode .enteteFenetre h2,
-.dark-mode .messagePartage {
+.dark-mode .messagePartage,
+.dark-mode .garderPage {
     color: var(--couleur-claire);
 }
 
@@ -861,21 +882,24 @@ h1 {
 }
 
 .dark-mode .listePartage a,
-.dark-mode .listePartage button {
+.dark-mode .listePartage button,
+.dark-mode .garderPage button {
     border-color: var(--couleur-claire);
     background-color: var(--couleur-principale);
     color: var(--couleur-claire);
 }
 
 .dark-mode .listePartage a:hover,
-.dark-mode .listePartage button:hover {
+.dark-mode .listePartage button:hover,
+.dark-mode .garderPage button:hover {
     background-color: var(--couleur-claire);
     color: var(--couleur-police);
 }
 
 .dark-mode .fermerFenetre:focus-visible,
 .dark-mode .listePartage a:focus-visible,
-.dark-mode .listePartage button:focus-visible {
+.dark-mode .listePartage button:focus-visible,
+.dark-mode .garderPage button:focus-visible {
     outline-color: var(--couleur-claire);
 }
 

@@ -22,6 +22,7 @@ Remplacez les textes et liens d'exemple par les vôtres :
 - **`mentions-legales.html`** : complétez les éléments entre crochets (éditeur, directeur de la publication, durée de conservation des messages…) ; adaptez la partie « Hébergement » si vous n'utilisez pas GitHub Pages.
 - **`accessibilite.html`** : la charte présente Oplinbio ; complétez la déclaration d'accessibilité (éléments entre crochets) après avoir fait auditer votre page.
 - **`script.js`** : titre et texte utilisés lors du partage de la page (`TITRE_PARTAGE` et `TEXTE_PARTAGE`).
+- **`site.webmanifest`** : nom (`name`, `short_name`), description et couleurs de la page une fois installée sur un appareil. Remplacez aussi les icônes du dossier `images/icones/` (PNG carrés de 192 × 192 et 512 × 512 pixels, et `apple-touch-icon.png` de 180 × 180 pixels pour iPhone et iPad) par votre photo ou votre logo.
 
 ### Réseaux sociaux et liens disponibles
 
@@ -66,6 +67,7 @@ Sous la présentation, le bouton « Me contacter » ouvre le formulaire de conta
 
 - **Mode clair / sombre** : le site suit automatiquement le réglage de l'appareil. L'interrupteur (soleil/lune) permet de choisir ; ce choix est mémorisé dans le navigateur et appliqué sur toutes les pages.
 - **Partage** : le bouton Partager ouvre une fenêtre avec Facebook, X (Twitter), LinkedIn, Mastodon, Bluesky, Threads, Reddit, WhatsApp, l'e-mail, la copie du lien et, sur les appareils qui le permettent, le partage natif.
+- **Garder cette page** : en bas de la fenêtre de partage, une rubrique explique comment ajouter la page aux favoris selon l'appareil du visiteur (<kbd>Ctrl</kbd> + <kbd>D</kbd>, <kbd>⌘</kbd> + <kbd>D</kbd> sur Mac, menu Partager sur iPhone et iPad, menu du navigateur sur Android) : aucun navigateur ne permet à une page d'ajouter elle-même un favori. Quand le navigateur le propose (Chrome, Edge, Android… sur une adresse en `https`, comme GitHub Pages), un bouton **« Installer sur l'appareil »** permet aussi d'installer la page comme une application, grâce au fichier `site.webmanifest`.
 - **Paramètres d'accessibilité** : le bouton rond placé à côté de l'interrupteur clair/sombre ouvre [AccessConfig](https://accessconfig.a11y.fr) (Access42, licence MIT, dossier `accessconfig/`) pour choisir des contrastes renforcés ou inversés, une police adaptée à la dyslexie, l'interlignage, la justification et le remplacement des images par leur texte.
 - **Accessibilité** : liens d'évitement, navigation au clavier, contours de focus visibles, mention « nouvel onglet » pour les lecteurs d'écran, respect du réglage « réduire les animations ».
 
