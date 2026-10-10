@@ -29,6 +29,10 @@ Première version du modèle Oplinbio.
 - Bouton « Paramètres d'accessibilité » placé à côté de l'interrupteur clair/sombre (la barre du haut reste disponible, en commentaire).
 - Espacement identique entre tous les accordéons de la page d'accueil.
 - Texte de la page d'accueil présentant le projet Oplinbio tout en indiquant quoi remplacer.
+- Variables CSS sans doublons : valeurs reprises avec `var()` et tailles dérivées calculées avec `calc()` (arrondis, focus, cibles tactiles, icônes, champs).
+- Icônes de chaque réseau social disponibles dans les deux dossiers (`boutonReseau` et `logoLien`) ; la fenêtre de partage utilise les mêmes images que les boutons de réseaux sociaux.
+- Boutons de réseaux sociaux : Bluesky affiché à la place de X (Twitter) ; X, Mastodon, Threads, Reddit et WhatsApp prêts à l'emploi en commentaire.
+- Titulaire des droits : Code Expérience.
 
 ### Accessibilité
 - AccessConfig (Access42) sur les quatre pages : contrastes, police adaptée à la dyslexie, interlignage, justification, remplacement des images.

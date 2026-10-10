@@ -1,33 +1,61 @@
 /* ==========================================================
    Variables de personnalisation
-   Modifiez ces valeurs pour adapter les couleurs et les polices
-   du modèle à votre identité visuelle.
+   Modifiez ces valeurs pour adapter les couleurs, les polices et
+   les formes du modèle à votre identité visuelle. Les variables qui
+   reprennent une autre variable (var) ou en sont calculées (calc)
+   suivent automatiquement ses changements.
    ========================================================== */
 :root {
+    /* ---------- Couleurs ---------- */
+
     /* Couleur principale : boutons de liens, en-têtes d'accordéons,
        pied de page, contours de focus */
     --couleur-principale: #1E2022;
 
-    /* Couleur secondaire : fond de l'en-tête et de la présentation */
+    /* Couleur secondaire : fond de l'en-tête, de la présentation et des pages secondaires */
     --couleur-secondaire: #BDD3E0;
 
     /* Couleur tertiaire (facultative) : survol des boutons de liens */
     --couleur-tertiaire: #445D76;
 
-    /* Couleur de la police d'écriture (textes et titres en mode clair) */
-    --couleur-police: #1E2022;
+    /* Couleur de la police d'écriture : par défaut, la couleur principale */
+    --couleur-police: var(--couleur-principale);
+
+    /* ---------- Polices ---------- */
+    /* Pensez à charger les polices choisies dans le <head> des pages (lien Google Fonts). */
 
     /* Police des titres (nom, titres de sections, en-têtes d'accordéons) */
     --police-titres: 'Raleway', sans-serif;
 
-    /* Police du texte et des liens de la zone principale (contenu de la page) */
-    --police-texte-principale: 'Raleway', sans-serif;
+    /* Police du texte et des liens de la zone principale (contenu de la page) :
+       par défaut, la même que les titres */
+    --police-texte-principale: var(--police-titres);
 
-    /* Police du texte et des liens de la zone secondaire
-       (en-tête, pied de page, fenêtres et boutons d'options) */
-    --police-texte-secondaire: 'Raleway', sans-serif;
+    /* Police du texte et des liens de la zone secondaire (en-tête, pied de page,
+       fenêtres et boutons d'options) : par défaut, la même que la zone principale */
+    --police-texte-secondaire: var(--police-texte-principale);
 
-    /* Pensez à charger les polices choisies dans le <head> des pages (lien Google Fonts). */
+    /* ---------- Formes et tailles ---------- */
+
+    /* Arrondi des champs, boutons de partage, interrupteur… */
+    --arrondi: 20px;
+    /* Arrondi des boutons en forme de pilule (liens, accordéons, appel à l'action) */
+    --arrondi-pilule: calc(var(--arrondi) * 3.5);
+
+    /* Contour de focus clavier : épaisseur et décalage */
+    --epaisseur-focus: 3px;
+    --decalage-focus: 4px;
+
+    /* Taille minimale d'une cible tactile (bouton, lien) */
+    --taille-cible: 44px;
+
+    /* Icônes des boutons de liens (réduites sur tablette et mobile) */
+    --taille-icone-lien: 58px;
+
+    /* Champs du formulaire de contact : largeur, marge intérieure et bordure */
+    --largeur-champ: 70%;
+    --marge-champ: 30px;
+    --bordure-champ: 2px;
 
     /* ---------- Variables complémentaires ---------- */
 
@@ -130,7 +158,7 @@ button {
     left: 20px;
     z-index: 10;
     padding: 15px 25px;
-    border-radius: 20px;
+    border-radius: var(--arrondi);
     background-color: var(--couleur-principale);
     color: var(--couleur-claire);
     font-size: 20px;
@@ -139,7 +167,7 @@ button {
 
 .liensEvitement a:focus {
     top: 10px;
-    outline: 3px solid var(--couleur-claire);
+    outline: var(--epaisseur-focus) solid var(--couleur-claire);
     outline-offset: -6px;
 }
 
@@ -154,8 +182,8 @@ button {
 .boutonReseaux a:focus-visible,
 .boutonLien:focus-visible,
 .listeFooter a:focus-visible {
-    outline: 3px solid var(--couleur-principale);
-    outline-offset: 4px;
+    outline: var(--epaisseur-focus) solid var(--couleur-principale);
+    outline-offset: var(--decalage-focus);
 }
 
 .listeFooter a:focus-visible {
@@ -167,8 +195,8 @@ button {
    les lecteurs d'écran et apparaît en infobulle. */
 #a42-ac-button {
     position: relative;
-    width: 44px;
-    height: 44px;
+    width: var(--taille-cible);
+    height: var(--taille-cible);
     padding: 0;
     border: 2px solid var(--couleur-principale);
     border-radius: 50%;
@@ -194,8 +222,8 @@ button {
 }
 
 #a42-ac-button:focus-visible {
-    outline: 3px solid var(--couleur-principale);
-    outline-offset: 3px;
+    outline: var(--epaisseur-focus) solid var(--couleur-principale);
+    outline-offset: calc(var(--decalage-focus) - 1px);
 }
 
 .dark-mode #a42-ac-button {
@@ -230,7 +258,7 @@ button {
 
 .barreAccessibilite #a42-ac-button {
     width: auto;
-    min-height: 44px;
+    min-height: var(--taille-cible);
     padding: 8px 20px;
     border-color: var(--couleur-claire);
     border-radius: 30px;
@@ -328,7 +356,7 @@ h1 {
 /* Interrupteur clair/sombre : piste + curseur portant un picto soleil ou lune */
 .interrupteurTheme {
     padding: 0;
-    border-radius: 20px;
+    border-radius: var(--arrondi);
 }
 
 .pisteTheme {
@@ -336,7 +364,7 @@ h1 {
     display: block;
     width: 70px;
     height: 40px;
-    border-radius: 20px;
+    border-radius: var(--arrondi);
     background: var(--couleur-principale);
 }
 
@@ -407,8 +435,8 @@ h1 {
 
 /* Contour de focus visible au clavier */
 .interrupteurTheme:focus-visible {
-    outline: 3px solid var(--couleur-principale);
-    outline-offset: 4px;
+    outline: var(--epaisseur-focus) solid var(--couleur-principale);
+    outline-offset: var(--decalage-focus);
 }
 
 .dark-mode .interrupteurTheme:focus-visible {
@@ -458,7 +486,7 @@ h1 {
     display: inline-block;
     padding: 18px 40px;
     border: 3px solid var(--couleur-principale);
-    border-radius: 70px;
+    border-radius: var(--arrondi-pilule);
     background-color: var(--couleur-principale);
     color: var(--couleur-claire);
     font-size: 24px;
@@ -471,8 +499,8 @@ h1 {
 }
 
 .boutonAction:focus-visible {
-    outline: 3px solid var(--couleur-principale);
-    outline-offset: 4px;
+    outline: var(--epaisseur-focus) solid var(--couleur-principale);
+    outline-offset: var(--decalage-focus);
 }
 
 .dark-mode .boutonAction {
@@ -525,20 +553,42 @@ h1 {
     height: auto;
 }
 
-.instagram :hover {
+/* Survol des boutons de réseaux sociaux (limité à la liste .boutonReseaux,
+   car les mêmes classes servent aussi aux boutons de liens) */
+.boutonReseaux .instagram img:hover {
     content: url(images/logo/boutonReseau/instagramHover.svg);
 }
 
-.twitter :hover {
-    content: url(images/logo/boutonReseau/twitterHover.svg);
+.boutonReseaux .bluesky img:hover {
+    content: url(images/logo/boutonReseau/blueskyHover.svg);
 }
 
-.linkedin :hover {
+.boutonReseaux .linkedin img:hover {
     content: url(images/logo/boutonReseau/linkedinHover.svg);
 }
 
-.facebook :hover {
+.boutonReseaux .facebook img:hover {
     content: url(images/logo/boutonReseau/facebookHover.svg);
+}
+
+.boutonReseaux .twitter img:hover {
+    content: url(images/logo/boutonReseau/twitterHover.svg);
+}
+
+.boutonReseaux .mastodon img:hover {
+    content: url(images/logo/boutonReseau/mastodonHover.svg);
+}
+
+.boutonReseaux .threads img:hover {
+    content: url(images/logo/boutonReseau/threadsHover.svg);
+}
+
+.boutonReseaux .reddit img:hover {
+    content: url(images/logo/boutonReseau/redditHover.svg);
+}
+
+.boutonReseaux .whatsapp img:hover {
+    content: url(images/logo/boutonReseau/whatsappHover.svg);
 }
 
 
@@ -580,10 +630,10 @@ h1 {
     justify-content: space-between;
     align-items: center;
     gap: 20px;
-    min-height: 44px;
+    min-height: var(--taille-cible);
     padding: 15px 30px;
     border: 3px solid var(--couleur-principale);
-    border-radius: 70px;
+    border-radius: var(--arrondi-pilule);
     font-size: 35px;
     font-weight: 700;
     cursor: pointer;
@@ -625,8 +675,8 @@ h1 {
 
 /* Contour de focus bien visible pour la navigation au clavier */
 .categorieLiens summary:focus-visible {
-    outline: 3px solid var(--couleur-principale);
-    outline-offset: 4px;
+    outline: var(--epaisseur-focus) solid var(--couleur-principale);
+    outline-offset: var(--decalage-focus);
 }
 
 .categorieLiens[open] summary {
@@ -655,14 +705,14 @@ h1 {
     width: 85%;
     height: 100px;
     background-color: var(--couleur-principale);
-    border-radius: 70px;
+    border-radius: var(--arrondi-pilule);
 }
 
 /* Icônes des liens : même boîte pour toutes, qui ne change pas pendant
    le changement d'image au survol (sinon le premier clic peut être perdu) */
 .boutonLien img {
-    width: 58px;
-    height: 58px;
+    width: var(--taille-icone-lien);
+    height: var(--taille-icone-lien);
     object-fit: contain;
 }
 
@@ -716,8 +766,8 @@ h1 {
 }
 
 .fermerFenetre {
-    width: 44px;
-    height: 44px;
+    width: var(--taille-cible);
+    height: var(--taille-cible);
     border-radius: 50%;
     font-size: 32px;
     line-height: 1;
@@ -745,7 +795,7 @@ h1 {
     min-height: 56px;
     padding: 8px 15px;
     border: 2px solid var(--couleur-principale);
-    border-radius: 20px;
+    border-radius: var(--arrondi);
     background-color: var(--couleur-claire);
     color: var(--couleur-police);
     font-size: 18px;
@@ -785,8 +835,8 @@ h1 {
 .fermerFenetre:focus-visible,
 .listePartage a:focus-visible,
 .listePartage button:focus-visible {
-    outline: 3px solid var(--couleur-principale);
-    outline-offset: 3px;
+    outline: var(--epaisseur-focus) solid var(--couleur-principale);
+    outline-offset: calc(var(--decalage-focus) - 1px);
 }
 
 /* Fenêtre de partage en mode sombre */
@@ -877,8 +927,8 @@ h1 {
 
 /* Contour de focus bien visible pour la navigation au clavier */
 .boutonHautPage:focus-visible {
-    outline: 3px solid currentColor;
-    outline-offset: 4px;
+    outline: var(--epaisseur-focus) solid currentColor;
+    outline-offset: var(--decalage-focus);
 }
 
 /* Fin bouton haut de page  */
@@ -1144,8 +1194,8 @@ footer {
     }
 
     .boutonLien img {
-        width: 40px;
-        height: 40px;
+        width: calc(var(--taille-icone-lien) * 0.7);
+        height: calc(var(--taille-icone-lien) * 0.7);
     }
 }
 
@@ -1271,12 +1321,12 @@ form {
 /*Zone pour entrer le nom , prenom , email*/
 form input {
     background-color: var(--couleur-claire);
-    width: 70%;
+    width: var(--largeur-champ);
     font-size: 20px;
-    padding: 30px 30px;
-    border-radius: 20px;
+    padding: var(--marge-champ);
+    border-radius: var(--arrondi);
     margin-bottom: 20px;
-    border: solid 2px var(--couleur-principale);
+    border: solid var(--bordure-champ) var(--couleur-principale);
     color: var(--couleur-police);
     margin: 10px auto;
 }
@@ -1290,12 +1340,11 @@ form input::placeholder {
 /*Zone pour Entrer le message */
 form textarea {
     background-color: var(--couleur-claire);
-    width: 70%;
+    width: var(--largeur-champ);
     font-size: 20px;
-    padding: 30px 30px;
-    border-radius: 20px;
-    border-color: var(--couleur-principale);
-    border: solid 2px var(--couleur-principale);
+    padding: var(--marge-champ);
+    border-radius: var(--arrondi);
+    border: solid var(--bordure-champ) var(--couleur-principale);
     color: var(--couleur-police);
     margin: 10px auto;
 }
@@ -1321,7 +1370,7 @@ form textarea::placeholder {
 
 form button {
     background-color: var(--couleur-claire);
-    border-radius: 20px;
+    border-radius: var(--arrondi);
     font-size: 20px;
     padding: 20px 18px;
     text-align: center;
@@ -1343,8 +1392,8 @@ form button:hover {
 
 /* Formulaire de contact intégré à la page d'accueil (accordéon) */
 .formulaireContact label {
-    /* même largeur que les champs : 70 % + marges intérieures (2 × 30 px) + bordures */
-    width: calc(70% + 64px);
+    /* même largeur que les champs : largeur + marges intérieures + bordures */
+    width: calc(var(--largeur-champ) + 2 * var(--marge-champ) + 2 * var(--bordure-champ));
     margin: 20px auto 0 auto;
     font-size: 22px;
     font-weight: 700;
@@ -1352,17 +1401,17 @@ form button:hover {
 
 .formulaireContact input:focus-visible,
 .formulaireContact textarea:focus-visible {
-    outline: 3px solid currentColor;
-    outline-offset: 2px;
+    outline: var(--epaisseur-focus) solid currentColor;
+    outline-offset: calc(var(--decalage-focus) / 2);
 }
 
 .formulaireContact .message {
-    width: 70%;
+    width: var(--largeur-champ);
 }
 
 .formulaireContact button:focus-visible {
-    outline: 3px solid currentColor;
-    outline-offset: 4px;
+    outline: var(--epaisseur-focus) solid currentColor;
+    outline-offset: var(--decalage-focus);
 }
 
 /* CSS pour le message d'avertissement */
@@ -1375,7 +1424,7 @@ form button:hover {
     margin: 30px auto;
     color: var(--couleur-police);
     padding-bottom: 10px;
-    border-radius: 20px;
+    border-radius: var(--arrondi);
 }
 
 /* CSS pour le darkmode du formulaire */
@@ -1389,13 +1438,13 @@ form button:hover {
 
 .dark-mode form input {
     background-color: var(--couleur-principale);
-    border: solid 2px var(--couleur-claire);
+    border: solid var(--bordure-champ) var(--couleur-claire);
     color: var(--couleur-claire);
 }
 
 .dark-mode form textarea {
     background-color: var(--couleur-principale);
-    border: solid 2px var(--couleur-claire);
+    border: solid var(--bordure-champ) var(--couleur-claire);
     color: var(--couleur-claire);
 }
 
@@ -1454,8 +1503,8 @@ form button:hover {
 }
 
 .boutonAccueil:focus-visible {
-    outline: 3px solid var(--couleur-principale);
-    outline-offset: 4px;
+    outline: var(--epaisseur-focus) solid var(--couleur-principale);
+    outline-offset: var(--decalage-focus);
     border-radius: 50%;
 }
 

@@ -23,21 +23,38 @@ Remplacez les textes et liens d'exemple par les vôtres :
 - **`accessibilite.html`** : la charte présente Oplinbio ; complétez la déclaration d'accessibilité (éléments entre crochets) après avoir fait auditer votre page.
 - **`script.js`** : titre et texte utilisés lors du partage de la page (`TITRE_PARTAGE` et `TEXTE_PARTAGE`).
 
-Des icônes sont prêtes pour de nombreux services (Spotify, GitHub, Substack, Medium, Mastodon, Bluesky, Threads, Reddit, formulaire Google…). Les liens commentés dans `index.html` (YouTube, Podcast, Clubhouse, Uncut) peuvent être réactivés en retirant les commentaires qui les entourent ; supprimez simplement les liens dont vous n'avez pas besoin.
+### Réseaux sociaux et liens disponibles
 
-### Couleurs et police
+Des éléments sont prêts à l'emploi dans `index.html`. Pour en afficher un, retirez les commentaires `<!-- … -->` qui l'entourent ; pour en masquer un, entourez-le de commentaires ou supprimez-le.
 
-Les couleurs et les polices sont regroupées en variables au début de `style.css` (bloc `:root`) : changez une valeur et elle s'applique à tout le site.
+- **Boutons de réseaux sociaux** (sous la photo) : Instagram, Bluesky, LinkedIn et Facebook sont affichés ; **X (Twitter), Mastodon, Threads, Reddit et WhatsApp sont présents mais commentés**.
+- **Boutons de liens** (accordéons) : Spotify, GitHub, Substack, Medium, Mastodon, Bluesky, Threads, Reddit et formulaire Google sont affichés ; YouTube, Podcast, Clubhouse et Uncut sont commentés.
+
+Les icônes de chaque réseau existent dans les deux dossiers d'images, pour pouvoir utiliser le même logo partout :
+
+- `images/logo/boutonReseau/` : icônes carrées des boutons de réseaux sociaux, également utilisées dans la fenêtre de partage ;
+- `images/logo/logoLien/` : icônes des boutons de liens.
+
+Chaque icône a une variante `…Hover.svg` affichée au survol.
+
+### Couleurs, polices et formes
+
+Les couleurs, les polices et les formes sont regroupées en variables au début de `style.css` (bloc `:root`) : changez une valeur et elle s'applique à tout le site. Pour éviter les doublons, certaines variables reprennent une autre variable avec `var()` (par exemple `--couleur-police: var(--couleur-principale)`) ou en sont calculées avec `calc()` (par exemple `--arrondi-pilule: calc(var(--arrondi) * 3.5)`) : elles suivent automatiquement ses changements, et vous pouvez leur donner leur propre valeur si besoin.
 
 | Variable | Rôle |
 |---|---|
 | `--couleur-principale` | Boutons de liens, en-têtes d'accordéons, pied de page, contours de focus |
 | `--couleur-secondaire` | Fond de l'en-tête, de la présentation et des pages secondaires |
 | `--couleur-tertiaire` | (facultative) Survol des boutons de liens |
-| `--couleur-police` | Couleur des textes et des titres |
+| `--couleur-police` | Couleur des textes et des titres (par défaut : la couleur principale) |
 | `--police-titres` | Police des titres |
-| `--police-texte-principale` | Police du texte et des liens du contenu de la page |
-| `--police-texte-secondaire` | Police du texte et des liens de l'en-tête, du pied de page et des fenêtres |
+| `--police-texte-principale` | Police du texte et des liens du contenu de la page (par défaut : celle des titres) |
+| `--police-texte-secondaire` | Police du texte et des liens de l'en-tête, du pied de page et des fenêtres (par défaut : celle de la zone principale) |
+| `--arrondi`, `--arrondi-pilule` | Arrondi des champs et boutons ; celui des boutons en pilule en est calculé |
+| `--epaisseur-focus`, `--decalage-focus` | Contour de focus clavier |
+| `--taille-cible` | Taille minimale des petits boutons (44 px) |
+| `--taille-icone-lien` | Taille des icônes des boutons de liens (réduite par calcul sur tablette) |
+| `--largeur-champ`, `--marge-champ`, `--bordure-champ` | Champs du formulaire ; la largeur des étiquettes en est calculée |
 
 Des variables complémentaires (couleur claire, couleurs du mode sombre) suivent dans le même bloc. Si vous changez de police, mettez aussi à jour le lien Google Fonts dans le `<head>` des pages.
 
